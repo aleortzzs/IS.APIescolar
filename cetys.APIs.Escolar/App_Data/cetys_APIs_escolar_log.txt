@@ -1,0 +1,559 @@
+request
+Method: GET, RequestUri: 'http://localhost:61363/', Version: 1.1, Content: System.Web.Http.WebHost.HttpControllerHandler+LazyStreamContent, Headers:
+{
+  Connection: keep-alive
+  Accept: text/html
+  Accept: application/xhtml+xml
+  Accept: application/xml; q=0.9
+  Accept: image/webp
+  Accept: image/apng
+  Accept: */*; q=0.8
+  Accept: application/signed-exchange; v=b3
+  Accept-Encoding: gzip
+  Accept-Encoding: deflate
+  Accept-Encoding: br
+  Accept-Language: en-US
+  Accept-Language: en; q=0.9
+  Host: localhost:61363
+  User-Agent: Mozilla/5.0
+  User-Agent: (Windows NT 6.1; WOW64)
+  User-Agent: AppleWebKit/537.36
+  User-Agent: (KHTML, like Gecko)
+  User-Agent: Chrome/75.0.3770.80
+  User-Agent: Safari/537.36
+  User-Agent: Avast/75.0.1447.80
+  Upgrade-Insecure-Requests: 1
+  DNT: 1
+}
+No token received, token = null
+request
+Method: GET, RequestUri: 'http://localhost:61363/swagger', Version: 1.1, Content: System.Web.Http.WebHost.HttpControllerHandler+LazyStreamContent, Headers:
+{
+  Connection: keep-alive
+  Accept: text/html
+  Accept: application/xhtml+xml
+  Accept: application/xml; q=0.9
+  Accept: image/webp
+  Accept: image/apng
+  Accept: */*; q=0.8
+  Accept: application/signed-exchange; v=b3
+  Accept-Encoding: gzip
+  Accept-Encoding: deflate
+  Accept-Encoding: br
+  Accept-Language: en-US
+  Accept-Language: en; q=0.9
+  Host: localhost:61363
+  User-Agent: Mozilla/5.0
+  User-Agent: (Windows NT 6.1; WOW64)
+  User-Agent: AppleWebKit/537.36
+  User-Agent: (KHTML, like Gecko)
+  User-Agent: Chrome/75.0.3770.80
+  User-Agent: Safari/537.36
+  User-Agent: Avast/75.0.1447.80
+  Upgrade-Insecure-Requests: 1
+  DNT: 1
+}
+No token received, token = null
+request
+Method: GET, RequestUri: 'http://localhost:61363/swagger/ui/index', Version: 1.1, Content: System.Web.Http.WebHost.HttpControllerHandler+LazyStreamContent, Headers:
+{
+  Connection: keep-alive
+  Accept: text/html
+  Accept: application/xhtml+xml
+  Accept: application/xml; q=0.9
+  Accept: image/webp
+  Accept: image/apng
+  Accept: */*; q=0.8
+  Accept: application/signed-exchange; v=b3
+  Accept-Encoding: gzip
+  Accept-Encoding: deflate
+  Accept-Encoding: br
+  Accept-Language: en-US
+  Accept-Language: en; q=0.9
+  Host: localhost:61363
+  User-Agent: Mozilla/5.0
+  User-Agent: (Windows NT 6.1; WOW64)
+  User-Agent: AppleWebKit/537.36
+  User-Agent: (KHTML, like Gecko)
+  User-Agent: Chrome/75.0.3770.80
+  User-Agent: Safari/537.36
+  User-Agent: Avast/75.0.1447.80
+  Upgrade-Insecure-Requests: 1
+  DNT: 1
+}
+No token received, token = null
+request
+Method: GET, RequestUri: 'http://localhost:61363/swagger/ui/css/typography-css', Version: 1.1, Content: System.Web.Http.WebHost.HttpControllerHandler+LazyStreamContent, Headers:
+{
+  Connection: keep-alive
+  Accept: text/css
+  Accept: */*; q=0.1
+  Accept-Encoding: gzip
+  Accept-Encoding: deflate
+  Accept-Encoding: br
+  Accept-Language: en-US
+  Accept-Language: en; q=0.9
+  Host: localhost:61363
+  Referer: http://localhost:61363/swagger/ui/index
+  User-Agent: Mozilla/5.0
+  User-Agent: (Windows NT 6.1; WOW64)
+  User-Agent: AppleWebKit/537.36
+  User-Agent: (KHTML, like Gecko)
+  User-Agent: Chrome/75.0.3770.80
+  User-Agent: Safari/537.36
+  User-Agent: Avast/75.0.1447.80
+  DNT: 1
+}
+No token received, token = null
+request
+Method: GET, RequestUri: 'http://localhost:61363/swagger/ui/lib/jquery-1-8-0-min-js', Version: 1.1, Content: System.Web.Http.WebHost.HttpControllerHandler+LazyStreamContent, Headers:
+{
+  Connection: keep-alive
+  Accept: */*
+  Accept-Encoding: gzip
+  Accept-Encoding: deflate
+  Accept-Encoding: br
+  Accept-Language: en-US
+  Accept-Language: en; q=0.9
+  Host: localhost:61363
+  Referer: http://localhost:61363/swagger/ui/index
+  User-Agent: Mozilla/5.0
+  User-Agent: (Windows NT 6.1; WOW64)
+  User-Agent: AppleWebKit/537.36
+  User-Agent: (KHTML, like Gecko)
+  User-Agent: Chrome/75.0.3770.80
+  User-Agent: Safari/537.36
+  User-Agent: Avast/75.0.1447.80
+  DNT: 1
+}
+No token received, token = null
+request
+Method: GET, RequestUri: 'http://localhost:61363/swagger/ui/css/screen-css', Version: 1.1, Content: System.Web.Http.WebHost.HttpControllerHandler+LazyStreamContent, Headers:
+{
+  Connection: keep-alive
+  Accept: text/css
+  Accept: */*; q=0.1
+  Accept-Encoding: gzip
+  Accept-Encoding: deflate
+  Accept-Encoding: br
+  Accept-Language: en-US
+  Accept-Language: en; q=0.9
+  Host: localhost:61363
+  Referer: http://localhost:61363/swagger/ui/index
+  User-Agent: Mozilla/5.0
+  User-Agent: (Windows NT 6.1; WOW64)
+  User-Agent: AppleWebKit/537.36
+  User-Agent: (KHTML, like Gecko)
+  User-Agent: Chrome/75.0.3770.80
+  User-Agent: Safari/537.36
+  User-Agent: Avast/75.0.1447.80
+  DNT: 1
+}
+No token received, token = null
+request
+Method: GET, RequestUri: 'http://localhost:61363/swagger/ui/css/reset-css', Version: 1.1, Content: System.Web.Http.WebHost.HttpControllerHandler+LazyStreamContent, Headers:
+{
+  Connection: keep-alive
+  Accept: text/css
+  Accept: */*; q=0.1
+  Accept-Encoding: gzip
+  Accept-Encoding: deflate
+  Accept-Encoding: br
+  Accept-Language: en-US
+  Accept-Language: en; q=0.9
+  Host: localhost:61363
+  Referer: http://localhost:61363/swagger/ui/index
+  User-Agent: Mozilla/5.0
+  User-Agent: (Windows NT 6.1; WOW64)
+  User-Agent: AppleWebKit/537.36
+  User-Agent: (KHTML, like Gecko)
+  User-Agent: Chrome/75.0.3770.80
+  User-Agent: Safari/537.36
+  User-Agent: Avast/75.0.1447.80
+  DNT: 1
+}
+No token received, token = null
+request
+Method: GET, RequestUri: 'http://localhost:61363/swagger/ui/lib/jquery-slideto-min-js', Version: 1.1, Content: System.Web.Http.WebHost.HttpControllerHandler+LazyStreamContent, Headers:
+{
+  Connection: keep-alive
+  Accept: */*
+  Accept-Encoding: gzip
+  Accept-Encoding: deflate
+  Accept-Encoding: br
+  Accept-Language: en-US
+  Accept-Language: en; q=0.9
+  Host: localhost:61363
+  Referer: http://localhost:61363/swagger/ui/index
+  User-Agent: Mozilla/5.0
+  User-Agent: (Windows NT 6.1; WOW64)
+  User-Agent: AppleWebKit/537.36
+  User-Agent: (KHTML, like Gecko)
+  User-Agent: Chrome/75.0.3770.80
+  User-Agent: Safari/537.36
+  User-Agent: Avast/75.0.1447.80
+  DNT: 1
+}
+No token received, token = null
+request
+Method: GET, RequestUri: 'http://localhost:61363/swagger/ui/lib/jquery-ba-bbq-min-js', Version: 1.1, Content: System.Web.Http.WebHost.HttpControllerHandler+LazyStreamContent, Headers:
+{
+  Connection: keep-alive
+  Accept: */*
+  Accept-Encoding: gzip
+  Accept-Encoding: deflate
+  Accept-Encoding: br
+  Accept-Language: en-US
+  Accept-Language: en; q=0.9
+  Host: localhost:61363
+  Referer: http://localhost:61363/swagger/ui/index
+  User-Agent: Mozilla/5.0
+  User-Agent: (Windows NT 6.1; WOW64)
+  User-Agent: AppleWebKit/537.36
+  User-Agent: (KHTML, like Gecko)
+  User-Agent: Chrome/75.0.3770.80
+  User-Agent: Safari/537.36
+  User-Agent: Avast/75.0.1447.80
+  DNT: 1
+}
+No token received, token = null
+request
+Method: GET, RequestUri: 'http://localhost:61363/swagger/ui/lib/handlebars-4-0-5-js', Version: 1.1, Content: System.Web.Http.WebHost.HttpControllerHandler+LazyStreamContent, Headers:
+{
+  Connection: keep-alive
+  Accept: */*
+  Accept-Encoding: gzip
+  Accept-Encoding: deflate
+  Accept-Encoding: br
+  Accept-Language: en-US
+  Accept-Language: en; q=0.9
+  Host: localhost:61363
+  Referer: http://localhost:61363/swagger/ui/index
+  User-Agent: Mozilla/5.0
+  User-Agent: (Windows NT 6.1; WOW64)
+  User-Agent: AppleWebKit/537.36
+  User-Agent: (KHTML, like Gecko)
+  User-Agent: Chrome/75.0.3770.80
+  User-Agent: Safari/537.36
+  User-Agent: Avast/75.0.1447.80
+  DNT: 1
+}
+No token received, token = null
+request
+Method: GET, RequestUri: 'http://localhost:61363/swagger/ui/lib/backbone-min-js', Version: 1.1, Content: System.Web.Http.WebHost.HttpControllerHandler+LazyStreamContent, Headers:
+{
+  Connection: keep-alive
+  Accept: */*
+  Accept-Encoding: gzip
+  Accept-Encoding: deflate
+  Accept-Encoding: br
+  Accept-Language: en-US
+  Accept-Language: en; q=0.9
+  Host: localhost:61363
+  Referer: http://localhost:61363/swagger/ui/index
+  User-Agent: Mozilla/5.0
+  User-Agent: (Windows NT 6.1; WOW64)
+  User-Agent: AppleWebKit/537.36
+  User-Agent: (KHTML, like Gecko)
+  User-Agent: Chrome/75.0.3770.80
+  User-Agent: Safari/537.36
+  User-Agent: Avast/75.0.1447.80
+  DNT: 1
+}
+No token received, token = null
+Method: GET, RequestUri: 'http://localhost:61363/swagger/ui/swagger-ui-min-js', Version: 1.1, Content: System.Web.Http.WebHost.HttpControllerHandler+LazyStreamContent, Headers:
+{
+  Connection: keep-alive
+  Accept: */*
+  Accept-Encoding: gzip
+  Accept-Encoding: deflate
+  Accept-Encoding: br
+  Accept-Language: en-US
+  Accept-Language: en; q=0.9
+  Host: localhost:61363
+  Referer: http://localhost:61363/swagger/ui/index
+  User-Agent: Mozilla/5.0
+  User-Agent: (Windows NT 6.1; WOW64)
+  User-Agent: AppleWebKit/537.36
+  User-Agent: (KHTML, like Gecko)
+  User-Agent: Chrome/75.0.3770.80
+  User-Agent: Safari/537.36
+  User-Agent: Avast/75.0.1447.80
+  DNT: 1
+}
+No token received, token = null
+request
+Method: GET, RequestUri: 'http://localhost:61363/swagger/ui/lib/object-assign-pollyfill-js', Version: 1.1, Content: System.Web.Http.WebHost.HttpControllerHandler+LazyStreamContent, Headers:
+{
+  Connection: keep-alive
+  Accept: */*
+  Accept-Encoding: gzip
+  Accept-Encoding: deflate
+  Accept-Encoding: br
+  Accept-Language: en-US
+  Accept-Language: en; q=0.9
+  Host: localhost:61363
+  Referer: http://localhost:61363/swagger/ui/index
+  User-Agent: Mozilla/5.0
+  User-Agent: (Windows NT 6.1; WOW64)
+  User-Agent: AppleWebKit/537.36
+  User-Agent: (KHTML, like Gecko)
+  User-Agent: Chrome/75.0.3770.80
+  User-Agent: Safari/537.36
+  User-Agent: Avast/75.0.1447.80
+  DNT: 1
+}
+No token received, token = null
+Method: GET, RequestUri: 'http://localhost:61363/swagger/ui/lib/jquery-wiggle-min-js', Version: 1.1, Content: System.Web.Http.WebHost.HttpControllerHandler+LazyStreamContent, Headers:
+{
+  Connection: keep-alive
+  Accept: */*
+  Accept-Encoding: gzip
+  Accept-Encoding: deflate
+  Accept-Encoding: br
+  Accept-Language: en-US
+  Accept-Language: en; q=0.9
+  Host: localhost:61363
+  Referer: http://localhost:61363/swagger/ui/index
+  User-Agent: Mozilla/5.0
+  User-Agent: (Windows NT 6.1; WOW64)
+  User-Agent: AppleWebKit/537.36
+  User-Agent: (KHTML, like Gecko)
+  User-Agent: Chrome/75.0.3770.80
+  User-Agent: Safari/537.36
+  User-Agent: Avast/75.0.1447.80
+  DNT: 1
+}
+No token received, token = null
+request
+Method: GET, RequestUri: 'http://localhost:61363/swagger/ui/lib/highlight-9-1-0-pack_extended-js', Version: 1.1, Content: System.Web.Http.WebHost.HttpControllerHandler+LazyStreamContent, Headers:
+{
+  Connection: keep-alive
+  Accept: */*
+  Accept-Encoding: gzip
+  Accept-Encoding: deflate
+  Accept-Encoding: br
+  Accept-Language: en-US
+  Accept-Language: en; q=0.9
+  Host: localhost:61363
+  Referer: http://localhost:61363/swagger/ui/index
+  User-Agent: Mozilla/5.0
+  User-Agent: (Windows NT 6.1; WOW64)
+  User-Agent: AppleWebKit/537.36
+  User-Agent: (KHTML, like Gecko)
+  User-Agent: Chrome/75.0.3770.80
+  User-Agent: Safari/537.36
+  User-Agent: Avast/75.0.1447.80
+  DNT: 1
+}
+No token received, token = null
+request
+Method: GET, RequestUri: 'http://localhost:61363/swagger/ui/lib/highlight-9-1-0-pack-js', Version: 1.1, Content: System.Web.Http.WebHost.HttpControllerHandler+LazyStreamContent, Headers:
+{
+  Connection: keep-alive
+  Accept: */*
+  Accept-Encoding: gzip
+  Accept-Encoding: deflate
+  Accept-Encoding: br
+  Accept-Language: en-US
+  Accept-Language: en; q=0.9
+  Host: localhost:61363
+  Referer: http://localhost:61363/swagger/ui/index
+  User-Agent: Mozilla/5.0
+  User-Agent: (Windows NT 6.1; WOW64)
+  User-Agent: AppleWebKit/537.36
+  User-Agent: (KHTML, like Gecko)
+  User-Agent: Chrome/75.0.3770.80
+  User-Agent: Safari/537.36
+  User-Agent: Avast/75.0.1447.80
+  DNT: 1
+}
+No token received, token = null
+No token received, token = null
+request
+Method: GET, RequestUri: 'http://localhost:61363/swagger/ui/lib/jsoneditor-min-js', Version: 1.1, Content: System.Web.Http.WebHost.HttpControllerHandler+LazyStreamContent, Headers:
+{
+  Connection: keep-alive
+  Accept: */*
+  Accept-Encoding: gzip
+  Accept-Encoding: deflate
+  Accept-Encoding: br
+  Accept-Language: en-US
+  Accept-Language: en; q=0.9
+  Host: localhost:61363
+  Referer: http://localhost:61363/swagger/ui/index
+  User-Agent: Mozilla/5.0
+  User-Agent: (Windows NT 6.1; WOW64)
+  User-Agent: AppleWebKit/537.36
+  User-Agent: (KHTML, like Gecko)
+  User-Agent: Chrome/75.0.3770.80
+  User-Agent: Safari/537.36
+  User-Agent: Avast/75.0.1447.80
+  DNT: 1
+}
+No token received, token = null
+request
+Method: GET, RequestUri: 'http://localhost:61363/swagger/ui/images/logo_small-png', Version: 1.1, Content: System.Web.Http.WebHost.HttpControllerHandler+LazyStreamContent, Headers:
+{
+  Connection: keep-alive
+  Accept: image/webp
+  Accept: image/apng
+  Accept: image/*
+  Accept: */*; q=0.8
+  Accept-Encoding: gzip
+  Accept-Encoding: deflate
+  Accept-Encoding: br
+  Accept-Language: en-US
+  Accept-Language: en; q=0.9
+  Host: localhost:61363
+  Referer: http://localhost:61363/swagger/ui/index
+  User-Agent: Mozilla/5.0
+  User-Agent: (Windows NT 6.1; WOW64)
+  User-Agent: AppleWebKit/537.36
+  User-Agent: (KHTML, like Gecko)
+  User-Agent: Chrome/75.0.3770.80
+  User-Agent: Safari/537.36
+  User-Agent: Avast/75.0.1447.80
+  DNT: 1
+}
+No token received, token = null
+request
+Method: GET, RequestUri: 'http://localhost:61363/swagger/ui/css/print-css', Version: 1.1, Content: System.Web.Http.WebHost.HttpControllerHandler+LazyStreamContent, Headers:
+{
+  Connection: keep-alive
+  Accept: text/css
+  Accept: */*; q=0.1
+  Accept-Encoding: gzip
+  Accept-Encoding: deflate
+  Accept-Encoding: br
+  Accept-Language: en-US
+  Accept-Language: en; q=0.9
+  Host: localhost:61363
+  Referer: http://localhost:61363/swagger/ui/index
+  User-Agent: Mozilla/5.0
+  User-Agent: (Windows NT 6.1; WOW64)
+  User-Agent: AppleWebKit/537.36
+  User-Agent: (KHTML, like Gecko)
+  User-Agent: Chrome/75.0.3770.80
+  User-Agent: Safari/537.36
+  User-Agent: Avast/75.0.1447.80
+  DNT: 1
+}
+No token received, token = null
+request
+Method: GET, RequestUri: 'http://localhost:61363/swagger/ui/lib/marked-js', Version: 1.1, Content: System.Web.Http.WebHost.HttpControllerHandler+LazyStreamContent, Headers:
+{
+  Connection: keep-alive
+  Accept: */*
+  Accept-Encoding: gzip
+  Accept-Encoding: deflate
+  Accept-Encoding: br
+  Accept-Language: en-US
+  Accept-Language: en; q=0.9
+  Host: localhost:61363
+  Referer: http://localhost:61363/swagger/ui/index
+  User-Agent: Mozilla/5.0
+  User-Agent: (Windows NT 6.1; WOW64)
+  User-Agent: AppleWebKit/537.36
+  User-Agent: (KHTML, like Gecko)
+  User-Agent: Chrome/75.0.3770.80
+  User-Agent: Safari/537.36
+  User-Agent: Avast/75.0.1447.80
+  DNT: 1
+}
+No token received, token = null
+request
+Method: GET, RequestUri: 'http://localhost:61363/swagger/ui/lib/swagger-oauth-js', Version: 1.1, Content: System.Web.Http.WebHost.HttpControllerHandler+LazyStreamContent, Headers:
+{
+  Connection: keep-alive
+  Accept: */*
+  Accept-Encoding: gzip
+  Accept-Encoding: deflate
+  Accept-Encoding: br
+  Accept-Language: en-US
+  Accept-Language: en; q=0.9
+  Host: localhost:61363
+  Referer: http://localhost:61363/swagger/ui/index
+  User-Agent: Mozilla/5.0
+  User-Agent: (Windows NT 6.1; WOW64)
+  User-Agent: AppleWebKit/537.36
+  User-Agent: (KHTML, like Gecko)
+  User-Agent: Chrome/75.0.3770.80
+  User-Agent: Safari/537.36
+  User-Agent: Avast/75.0.1447.80
+  DNT: 1
+}
+No token received, token = null
+request
+Method: GET, RequestUri: 'http://localhost:61363/swagger/docs/v1', Version: 1.1, Content: System.Web.Http.WebHost.HttpControllerHandler+LazyStreamContent, Headers:
+{
+  Connection: keep-alive
+  Accept: application/json; charset=utf-8
+  Accept: */*
+  Accept-Encoding: gzip
+  Accept-Encoding: deflate
+  Accept-Encoding: br
+  Accept-Language: en-US
+  Accept-Language: en; q=0.9
+  Host: localhost:61363
+  Referer: http://localhost:61363/swagger/ui/index
+  User-Agent: Mozilla/5.0
+  User-Agent: (Windows NT 6.1; WOW64)
+  User-Agent: AppleWebKit/537.36
+  User-Agent: (KHTML, like Gecko)
+  User-Agent: Chrome/75.0.3770.80
+  User-Agent: Safari/537.36
+  User-Agent: Avast/75.0.1447.80
+  DNT: 1
+}
+No token received, token = null
+request
+Method: GET, RequestUri: 'http://localhost:61363/swagger/ui/images/favicon-32x32-png', Version: 1.1, Content: System.Web.Http.WebHost.HttpControllerHandler+LazyStreamContent, Headers:
+{
+  Connection: keep-alive
+  Accept: image/webp
+  Accept: image/apng
+  Accept: image/*
+  Accept: */*; q=0.8
+  Accept-Encoding: gzip
+  Accept-Encoding: deflate
+  Accept-Encoding: br
+  Accept-Language: en-US
+  Accept-Language: en; q=0.9
+  Host: localhost:61363
+  Referer: http://localhost:61363/swagger/ui/index
+  User-Agent: Mozilla/5.0
+  User-Agent: (Windows NT 6.1; WOW64)
+  User-Agent: AppleWebKit/537.36
+  User-Agent: (KHTML, like Gecko)
+  User-Agent: Chrome/75.0.3770.80
+  User-Agent: Safari/537.36
+  User-Agent: Avast/75.0.1447.80
+  DNT: 1
+}
+No token received, token = null
+request
+Method: GET, RequestUri: 'http://localhost:61363/swagger/ui/images/throbber-gif', Version: 1.1, Content: System.Web.Http.WebHost.HttpControllerHandler+LazyStreamContent, Headers:
+{
+  Connection: keep-alive
+  Accept: image/webp
+  Accept: image/apng
+  Accept: image/*
+  Accept: */*; q=0.8
+  Accept-Encoding: gzip
+  Accept-Encoding: deflate
+  Accept-Encoding: br
+  Accept-Language: en-US
+  Accept-Language: en; q=0.9
+  Host: localhost:61363
+  Referer: http://localhost:61363/swagger/ui/css/screen-css
+  User-Agent: Mozilla/5.0
+  User-Agent: (Windows NT 6.1; WOW64)
+  User-Agent: AppleWebKit/537.36
+  User-Agent: (KHTML, like Gecko)
+  User-Agent: Chrome/75.0.3770.80
+  User-Agent: Safari/537.36
+  User-Agent: Avast/75.0.1447.80
+  DNT: 1
+}
+No token received, token = null

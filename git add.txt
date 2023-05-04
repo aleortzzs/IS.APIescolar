@@ -1,0 +1,4 @@
+git add "cetys.APIs.Escolar/*"
+git add "cetys.APIs.Escolar.Dal/*"
+git add "cetys.APIs.Escolar.Interfaces/*"
+git add "cetys.APIs.Helper/*"
