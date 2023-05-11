@@ -26,6 +26,7 @@ namespace cetys.APIs.Escolar.Entity
         }
     
         public virtual DbSet<alumno> alumno { get; set; }
+        public virtual DbSet<alumnoMateria> alumnoMateria { get; set; }
         public virtual DbSet<alumnoPrograma> alumnoPrograma { get; set; }
         public virtual DbSet<campus> campus { get; set; }
         public virtual DbSet<maestro> maestro { get; set; }

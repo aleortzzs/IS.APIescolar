@@ -17,21 +17,22 @@ namespace cetys.APIs.Escolar.Entity
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public alumno()
         {
-            this.alumnoPrograma1 = new HashSet<alumnoPrograma>();
+            this.alumnoMateria = new HashSet<alumnoMateria>();
+            this.alumnoPrograma = new HashSet<alumnoPrograma>();
         }
     
         public string matricula { get; set; }
         public string nombre { get; set; }
         public string direcc { get; set; }
-        public byte[] lugarNacimiento { get; set; }
+        public string lugarNacimiento { get; set; }
         public Nullable<System.DateTime> fechaNacimiento { get; set; }
-        public string estatus { get; set; }
-        public Nullable<int> idAlumnoPrograma { get; set; }
+        public Nullable<bool> estatus { get; set; }
         public string idCampus { get; set; }
     
-        public virtual alumnoPrograma alumnoPrograma { get; set; }
         public virtual campus campus { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<alumnoPrograma> alumnoPrograma1 { get; set; }
+        public virtual ICollection<alumnoMateria> alumnoMateria { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<alumnoPrograma> alumnoPrograma { get; set; }
     }
 }

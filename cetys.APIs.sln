@@ -7,7 +7,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "cetys.APIs.Escolar", "cetys
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "cetys.APIs.Escolar.Interfaces", "cetys.APIs.Escolar.Interfaces\cetys.APIs.Escolar.Interfaces.csproj", "{A89AA45F-F871-46AD-A80C-8A5B8D74DC03}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "cetys.APIs.Escolar.Entity", "cetys.APIs.Escolar.Entity\cetys.APIs.Escolar.Entity.csproj", "{CE2AEC98-DDF6-4818-8B52-22B148F94539}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "cetys.APIs.Escolar.Entity", "cetys.APIs.Escolar.Entity\cetys.APIs.Escolar.Entity.csproj", "{6D2FAA50-E326-459E-8A7E-90BF4D886BAD}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -23,10 +23,10 @@ Global
 		{A89AA45F-F871-46AD-A80C-8A5B8D74DC03}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A89AA45F-F871-46AD-A80C-8A5B8D74DC03}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A89AA45F-F871-46AD-A80C-8A5B8D74DC03}.Release|Any CPU.Build.0 = Release|Any CPU
-		{CE2AEC98-DDF6-4818-8B52-22B148F94539}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{CE2AEC98-DDF6-4818-8B52-22B148F94539}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{CE2AEC98-DDF6-4818-8B52-22B148F94539}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{CE2AEC98-DDF6-4818-8B52-22B148F94539}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6D2FAA50-E326-459E-8A7E-90BF4D886BAD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6D2FAA50-E326-459E-8A7E-90BF4D886BAD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6D2FAA50-E326-459E-8A7E-90BF4D886BAD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6D2FAA50-E326-459E-8A7E-90BF4D886BAD}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

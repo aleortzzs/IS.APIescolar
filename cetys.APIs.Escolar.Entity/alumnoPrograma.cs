@@ -14,24 +14,13 @@ namespace cetys.APIs.Escolar.Entity
     
     public partial class alumnoPrograma
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public alumnoPrograma()
-        {
-            this.alumno = new HashSet<alumno>();
-            this.programa1 = new HashSet<programa>();
-        }
-    
         public int idAlumnoPrograma { get; set; }
         public string matricula { get; set; }
-        public Nullable<int> idPrograma { get; set; }
+        public string idPrograma { get; set; }
         public Nullable<int> semestre { get; set; }
         public Nullable<double> avance { get; set; }
     
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<alumno> alumno { get; set; }
-        public virtual alumno alumno1 { get; set; }
+        public virtual alumno alumno { get; set; }
         public virtual programa programa { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<programa> programa1 { get; set; }
     }
 }
