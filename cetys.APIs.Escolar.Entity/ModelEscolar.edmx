@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="EscolarEquipo5Model.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="EscolarEquipo5Model.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="alumno">
           <Key>
             <PropertyRef Name="matricula" />
@@ -12,19 +12,27 @@
           <Property Name="matricula" Type="nchar" MaxLength="10" Nullable="false" />
           <Property Name="nombre" Type="varchar" MaxLength="50" />
           <Property Name="direcc" Type="varchar" MaxLength="100" />
-          <Property Name="lugarNacimiento" Type="varbinary" MaxLength="50" />
+          <Property Name="lugarNacimiento" Type="varchar" MaxLength="50" />
           <Property Name="fechaNacimiento" Type="date" />
-          <Property Name="estatus" Type="varchar" MaxLength="50" />
-          <Property Name="idAlumnoPrograma" Type="int" />
+          <Property Name="estatus" Type="bit" />
           <Property Name="idCampus" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="alumnoMateria">
+          <Key>
+            <PropertyRef Name="idAlumnoMateria" />
+          </Key>
+          <Property Name="idAlumnoMateria" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="matricula" Type="nchar" MaxLength="10" />
+          <Property Name="idMateria" Type="varchar" MaxLength="10" />
+          <Property Name="aprobada" Type="bit" />
         </EntityType>
         <EntityType Name="alumnoPrograma">
           <Key>
             <PropertyRef Name="idAlumnoPrograma" />
           </Key>
-          <Property Name="idAlumnoPrograma" Type="int" Nullable="false" />
+          <Property Name="idAlumnoPrograma" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="matricula" Type="nchar" MaxLength="10" />
-          <Property Name="idPrograma" Type="int" />
+          <Property Name="idPrograma" Type="varchar" MaxLength="10" />
           <Property Name="semestre" Type="int" />
           <Property Name="avance" Type="float" />
         </EntityType>
@@ -46,44 +54,40 @@
           <Property Name="direcc" Type="varchar" MaxLength="100" />
           <Property Name="lugarNacimiento" Type="varchar" MaxLength="50" />
           <Property Name="fechaNacimiento" Type="date" />
-          <Property Name="estatus" Type="varchar" MaxLength="50" />
+          <Property Name="estatus" Type="bit" />
           <Property Name="idCampus" Type="varchar" MaxLength="50" />
-          <Property Name="idMaestroMateria" Type="int" />
         </EntityType>
         <EntityType Name="maestroMateria">
           <Key>
             <PropertyRef Name="idMaestroMateria" />
           </Key>
-          <Property Name="idMaestroMateria" Type="int" Nullable="false" />
+          <Property Name="idMaestroMateria" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="numEmpleado" Type="int" />
-          <Property Name="idMateria" Type="int" />
+          <Property Name="idMateria" Type="varchar" MaxLength="10" />
         </EntityType>
         <EntityType Name="materia">
           <Key>
             <PropertyRef Name="idMateria" />
           </Key>
-          <Property Name="idMateria" Type="int" Nullable="false" />
+          <Property Name="idMateria" Type="varchar" MaxLength="10" Nullable="false" />
           <Property Name="nombre" Type="varchar" MaxLength="50" />
-          <Property Name="idMaestroMateria" Type="int" />
-          <Property Name="idMateriaPrograma" Type="int" />
         </EntityType>
         <EntityType Name="materiaPrograma">
           <Key>
             <PropertyRef Name="idMateriaPrograma" />
           </Key>
-          <Property Name="idMateriaPrograma" Type="int" Nullable="false" />
-          <Property Name="idMateria" Type="int" />
-          <Property Name="idPrograma" Type="int" />
+          <Property Name="idMateriaPrograma" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="idMateria" Type="varchar" MaxLength="10" />
+          <Property Name="idPrograma" Type="varchar" MaxLength="10" />
         </EntityType>
         <EntityType Name="programa">
           <Key>
             <PropertyRef Name="idPrograma" />
           </Key>
-          <Property Name="idPrograma" Type="int" Nullable="false" />
+          <Property Name="idPrograma" Type="varchar" MaxLength="10" Nullable="false" />
           <Property Name="nombrePrograma" Type="varchar" MaxLength="50" />
           <Property Name="nivel" Type="varchar" MaxLength="50" />
-          <Property Name="idAlumnoPrograma" Type="int" />
-          <Property Name="idMateriaPrograma" Type="int" />
+          <Property Name="idCampus" Type="varchar" MaxLength="50" />
         </EntityType>
         <EntityType Name="sysdiagrams">
           <Key>
@@ -95,18 +99,6 @@
           <Property Name="version" Type="int" />
           <Property Name="definition" Type="varbinary(max)" />
         </EntityType>
-        <Association Name="FK_alumno_alumnoPrograma">
-          <End Role="alumnoPrograma" Type="Self.alumnoPrograma" Multiplicity="0..1" />
-          <End Role="alumno" Type="Self.alumno" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="alumnoPrograma">
-              <PropertyRef Name="idAlumnoPrograma" />
-            </Principal>
-            <Dependent Role="alumno">
-              <PropertyRef Name="idAlumnoPrograma" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_alumno_campus">
           <End Role="campus" Type="Self.campus" Multiplicity="0..1" />
           <End Role="alumno" Type="Self.alumno" Multiplicity="*" />
@@ -116,6 +108,30 @@
             </Principal>
             <Dependent Role="alumno">
               <PropertyRef Name="idCampus" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_alumnoMateria_alumno">
+          <End Role="alumno" Type="Self.alumno" Multiplicity="0..1" />
+          <End Role="alumnoMateria" Type="Self.alumnoMateria" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="alumno">
+              <PropertyRef Name="matricula" />
+            </Principal>
+            <Dependent Role="alumnoMateria">
+              <PropertyRef Name="matricula" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_alumnoMateria_materia">
+          <End Role="materia" Type="Self.materia" Multiplicity="0..1" />
+          <End Role="alumnoMateria" Type="Self.alumnoMateria" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="materia">
+              <PropertyRef Name="idMateria" />
+            </Principal>
+            <Dependent Role="alumnoMateria">
+              <PropertyRef Name="idMateria" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -155,30 +171,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_materia_maestroMateria">
-          <End Role="maestroMateria" Type="Self.maestroMateria" Multiplicity="0..1" />
-          <End Role="materia" Type="Self.materia" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="maestroMateria">
-              <PropertyRef Name="idMaestroMateria" />
-            </Principal>
-            <Dependent Role="materia">
-              <PropertyRef Name="idMaestroMateria" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_materia_materiaPrograma">
-          <End Role="materiaPrograma" Type="Self.materiaPrograma" Multiplicity="0..1" />
-          <End Role="materia" Type="Self.materia" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="materiaPrograma">
-              <PropertyRef Name="idMateriaPrograma" />
-            </Principal>
-            <Dependent Role="materia">
-              <PropertyRef Name="idMateriaPrograma" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_materiaPrograma_materia">
           <End Role="materia" Type="Self.materia" Multiplicity="0..1" />
           <End Role="materiaPrograma" Type="Self.materiaPrograma" Multiplicity="*" />
@@ -203,27 +195,15 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_programa_alumnoPrograma">
-          <End Role="alumnoPrograma" Type="Self.alumnoPrograma" Multiplicity="0..1" />
+        <Association Name="FK_programa_campus">
+          <End Role="campus" Type="Self.campus" Multiplicity="0..1" />
           <End Role="programa" Type="Self.programa" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="alumnoPrograma">
-              <PropertyRef Name="idAlumnoPrograma" />
+            <Principal Role="campus">
+              <PropertyRef Name="idCampus" />
             </Principal>
             <Dependent Role="programa">
-              <PropertyRef Name="idAlumnoPrograma" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_programa_materiaPrograma">
-          <End Role="materiaPrograma" Type="Self.materiaPrograma" Multiplicity="0..1" />
-          <End Role="programa" Type="Self.programa" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="materiaPrograma">
-              <PropertyRef Name="idMateriaPrograma" />
-            </Principal>
-            <Dependent Role="programa">
-              <PropertyRef Name="idMateriaPrograma" />
+              <PropertyRef Name="idCampus" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -236,18 +216,6 @@
             </Principal>
             <Dependent Role="maestro">
               <PropertyRef Name="idCampus" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="idMaestroMateria">
-          <End Role="maestroMateria" Type="Self.maestroMateria" Multiplicity="0..1" />
-          <End Role="maestro" Type="Self.maestro" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="maestroMateria">
-              <PropertyRef Name="idMaestroMateria" />
-            </Principal>
-            <Dependent Role="maestro">
-              <PropertyRef Name="idMaestroMateria" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -265,6 +233,7 @@
         </Association>
         <EntityContainer Name="EscolarEquipo5ModelStoreContainer">
           <EntitySet Name="alumno" EntityType="Self.alumno" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="alumnoMateria" EntityType="Self.alumnoMateria" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="alumnoPrograma" EntityType="Self.alumnoPrograma" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="campus" EntityType="Self.campus" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="maestro" EntityType="Self.maestro" Schema="dbo" store:Type="Tables" />
@@ -273,13 +242,17 @@
           <EntitySet Name="materiaPrograma" EntityType="Self.materiaPrograma" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="programa" EntityType="Self.programa" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
-          <AssociationSet Name="FK_alumno_alumnoPrograma" Association="Self.FK_alumno_alumnoPrograma">
-            <End Role="alumnoPrograma" EntitySet="alumnoPrograma" />
-            <End Role="alumno" EntitySet="alumno" />
-          </AssociationSet>
           <AssociationSet Name="FK_alumno_campus" Association="Self.FK_alumno_campus">
             <End Role="campus" EntitySet="campus" />
             <End Role="alumno" EntitySet="alumno" />
+          </AssociationSet>
+          <AssociationSet Name="FK_alumnoMateria_alumno" Association="Self.FK_alumnoMateria_alumno">
+            <End Role="alumno" EntitySet="alumno" />
+            <End Role="alumnoMateria" EntitySet="alumnoMateria" />
+          </AssociationSet>
+          <AssociationSet Name="FK_alumnoMateria_materia" Association="Self.FK_alumnoMateria_materia">
+            <End Role="materia" EntitySet="materia" />
+            <End Role="alumnoMateria" EntitySet="alumnoMateria" />
           </AssociationSet>
           <AssociationSet Name="FK_alumnoPrograma_programa" Association="Self.FK_alumnoPrograma_programa">
             <End Role="programa" EntitySet="programa" />
@@ -293,14 +266,6 @@
             <End Role="materia" EntitySet="materia" />
             <End Role="maestroMateria" EntitySet="maestroMateria" />
           </AssociationSet>
-          <AssociationSet Name="FK_materia_maestroMateria" Association="Self.FK_materia_maestroMateria">
-            <End Role="maestroMateria" EntitySet="maestroMateria" />
-            <End Role="materia" EntitySet="materia" />
-          </AssociationSet>
-          <AssociationSet Name="FK_materia_materiaPrograma" Association="Self.FK_materia_materiaPrograma">
-            <End Role="materiaPrograma" EntitySet="materiaPrograma" />
-            <End Role="materia" EntitySet="materia" />
-          </AssociationSet>
           <AssociationSet Name="FK_materiaPrograma_materia" Association="Self.FK_materiaPrograma_materia">
             <End Role="materia" EntitySet="materia" />
             <End Role="materiaPrograma" EntitySet="materiaPrograma" />
@@ -309,20 +274,12 @@
             <End Role="programa" EntitySet="programa" />
             <End Role="materiaPrograma" EntitySet="materiaPrograma" />
           </AssociationSet>
-          <AssociationSet Name="FK_programa_alumnoPrograma" Association="Self.FK_programa_alumnoPrograma">
-            <End Role="alumnoPrograma" EntitySet="alumnoPrograma" />
-            <End Role="programa" EntitySet="programa" />
-          </AssociationSet>
-          <AssociationSet Name="FK_programa_materiaPrograma" Association="Self.FK_programa_materiaPrograma">
-            <End Role="materiaPrograma" EntitySet="materiaPrograma" />
+          <AssociationSet Name="FK_programa_campus" Association="Self.FK_programa_campus">
+            <End Role="campus" EntitySet="campus" />
             <End Role="programa" EntitySet="programa" />
           </AssociationSet>
           <AssociationSet Name="idCampus" Association="Self.idCampus">
             <End Role="campus" EntitySet="campus" />
-            <End Role="maestro" EntitySet="maestro" />
-          </AssociationSet>
-          <AssociationSet Name="idMaestroMateria" Association="Self.idMaestroMateria">
-            <End Role="maestroMateria" EntitySet="maestroMateria" />
             <End Role="maestro" EntitySet="maestro" />
           </AssociationSet>
           <AssociationSet Name="matricula" Association="Self.matricula">
@@ -330,51 +287,115 @@
             <End Role="alumnoPrograma" EntitySet="alumnoPrograma" />
           </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="EscolarEquipo5Model" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="EscolarEquipo5Entities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="alumno" EntityType="EscolarEquipo5Model.alumno" />
+          <EntitySet Name="alumnoMateria" EntityType="EscolarEquipo5Model.alumnoMateria" />
+          <EntitySet Name="alumnoPrograma" EntityType="EscolarEquipo5Model.alumnoPrograma" />
+          <EntitySet Name="campus" EntityType="EscolarEquipo5Model.campus" />
+          <EntitySet Name="maestro" EntityType="EscolarEquipo5Model.maestro" />
+          <EntitySet Name="maestroMateria" EntityType="EscolarEquipo5Model.maestroMateria" />
+          <EntitySet Name="materia" EntityType="EscolarEquipo5Model.materia" />
+          <EntitySet Name="materiaPrograma" EntityType="EscolarEquipo5Model.materiaPrograma" />
+          <EntitySet Name="programa" EntityType="EscolarEquipo5Model.programa" />
+          <EntitySet Name="sysdiagrams" EntityType="EscolarEquipo5Model.sysdiagrams" />
+          <AssociationSet Name="FK_alumno_campus" Association="EscolarEquipo5Model.FK_alumno_campus">
+            <End Role="campus" EntitySet="campus" />
+            <End Role="alumno" EntitySet="alumno" />
+          </AssociationSet>
+          <AssociationSet Name="FK_alumnoMateria_alumno" Association="EscolarEquipo5Model.FK_alumnoMateria_alumno">
+            <End Role="alumno" EntitySet="alumno" />
+            <End Role="alumnoMateria" EntitySet="alumnoMateria" />
+          </AssociationSet>
+          <AssociationSet Name="matricula" Association="EscolarEquipo5Model.matricula">
+            <End Role="alumno" EntitySet="alumno" />
+            <End Role="alumnoPrograma" EntitySet="alumnoPrograma" />
+          </AssociationSet>
+          <AssociationSet Name="FK_alumnoMateria_materia" Association="EscolarEquipo5Model.FK_alumnoMateria_materia">
+            <End Role="materia" EntitySet="materia" />
+            <End Role="alumnoMateria" EntitySet="alumnoMateria" />
+          </AssociationSet>
+          <AssociationSet Name="FK_alumnoPrograma_programa" Association="EscolarEquipo5Model.FK_alumnoPrograma_programa">
+            <End Role="programa" EntitySet="programa" />
+            <End Role="alumnoPrograma" EntitySet="alumnoPrograma" />
+          </AssociationSet>
+          <AssociationSet Name="FK_programa_campus" Association="EscolarEquipo5Model.FK_programa_campus">
+            <End Role="campus" EntitySet="campus" />
+            <End Role="programa" EntitySet="programa" />
+          </AssociationSet>
+          <AssociationSet Name="idCampus" Association="EscolarEquipo5Model.idCampus">
+            <End Role="campus" EntitySet="campus" />
+            <End Role="maestro" EntitySet="maestro" />
+          </AssociationSet>
+          <AssociationSet Name="FK_maestroMateria_maestro" Association="EscolarEquipo5Model.FK_maestroMateria_maestro">
+            <End Role="maestro" EntitySet="maestro" />
+            <End Role="maestroMateria" EntitySet="maestroMateria" />
+          </AssociationSet>
+          <AssociationSet Name="FK_maestroMateria_materia" Association="EscolarEquipo5Model.FK_maestroMateria_materia">
+            <End Role="materia" EntitySet="materia" />
+            <End Role="maestroMateria" EntitySet="maestroMateria" />
+          </AssociationSet>
+          <AssociationSet Name="FK_materiaPrograma_materia" Association="EscolarEquipo5Model.FK_materiaPrograma_materia">
+            <End Role="materia" EntitySet="materia" />
+            <End Role="materiaPrograma" EntitySet="materiaPrograma" />
+          </AssociationSet>
+          <AssociationSet Name="FK_materiaPrograma_programa" Association="EscolarEquipo5Model.FK_materiaPrograma_programa">
+            <End Role="programa" EntitySet="programa" />
+            <End Role="materiaPrograma" EntitySet="materiaPrograma" />
+          </AssociationSet>
+        </EntityContainer>
         <EntityType Name="alumno">
           <Key>
             <PropertyRef Name="matricula" />
           </Key>
-          <Property Name="matricula" Type="String" MaxLength="10" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="matricula" Type="String" Nullable="false" MaxLength="10" FixedLength="true" Unicode="true" />
           <Property Name="nombre" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="direcc" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
-          <Property Name="lugarNacimiento" Type="Binary" MaxLength="50" FixedLength="false" />
+          <Property Name="lugarNacimiento" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="fechaNacimiento" Type="DateTime" Precision="0" />
-          <Property Name="estatus" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="idAlumnoPrograma" Type="Int32" />
+          <Property Name="estatus" Type="Boolean" />
           <Property Name="idCampus" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <NavigationProperty Name="alumnoPrograma" Relationship="Self.FK_alumno_alumnoPrograma" FromRole="alumno" ToRole="alumnoPrograma" />
-          <NavigationProperty Name="campus" Relationship="Self.FK_alumno_campus" FromRole="alumno" ToRole="campus" />
-          <NavigationProperty Name="alumnoPrograma1" Relationship="Self.matricula" FromRole="alumno" ToRole="alumnoPrograma" />
+          <NavigationProperty Name="campus" Relationship="EscolarEquipo5Model.FK_alumno_campus" FromRole="alumno" ToRole="campus" />
+          <NavigationProperty Name="alumnoMateria" Relationship="EscolarEquipo5Model.FK_alumnoMateria_alumno" FromRole="alumno" ToRole="alumnoMateria" />
+          <NavigationProperty Name="alumnoPrograma" Relationship="EscolarEquipo5Model.matricula" FromRole="alumno" ToRole="alumnoPrograma" />
+        </EntityType>
+        <EntityType Name="alumnoMateria">
+          <Key>
+            <PropertyRef Name="idAlumnoMateria" />
+          </Key>
+          <Property Name="idAlumnoMateria" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="matricula" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="idMateria" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="aprobada" Type="Boolean" />
+          <NavigationProperty Name="alumno" Relationship="EscolarEquipo5Model.FK_alumnoMateria_alumno" FromRole="alumnoMateria" ToRole="alumno" />
+          <NavigationProperty Name="materia" Relationship="EscolarEquipo5Model.FK_alumnoMateria_materia" FromRole="alumnoMateria" ToRole="materia" />
         </EntityType>
         <EntityType Name="alumnoPrograma">
           <Key>
             <PropertyRef Name="idAlumnoPrograma" />
           </Key>
-          <Property Name="idAlumnoPrograma" Type="Int32" Nullable="false" />
+          <Property Name="idAlumnoPrograma" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="matricula" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
-          <Property Name="idPrograma" Type="Int32" />
+          <Property Name="idPrograma" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
           <Property Name="semestre" Type="Int32" />
           <Property Name="avance" Type="Double" />
-          <NavigationProperty Name="alumno" Relationship="Self.FK_alumno_alumnoPrograma" FromRole="alumnoPrograma" ToRole="alumno" />
-          <NavigationProperty Name="alumno1" Relationship="Self.matricula" FromRole="alumnoPrograma" ToRole="alumno" />
-          <NavigationProperty Name="programa" Relationship="Self.FK_alumnoPrograma_programa" FromRole="alumnoPrograma" ToRole="programa" />
-          <NavigationProperty Name="programa1" Relationship="Self.FK_programa_alumnoPrograma" FromRole="alumnoPrograma" ToRole="programa" />
+          <NavigationProperty Name="alumno" Relationship="EscolarEquipo5Model.matricula" FromRole="alumnoPrograma" ToRole="alumno" />
+          <NavigationProperty Name="programa" Relationship="EscolarEquipo5Model.FK_alumnoPrograma_programa" FromRole="alumnoPrograma" ToRole="programa" />
         </EntityType>
         <EntityType Name="campus">
           <Key>
             <PropertyRef Name="idCampus" />
           </Key>
-          <Property Name="idCampus" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="idCampus" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="tipo" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="nombre" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="direcc" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
-          <NavigationProperty Name="alumno" Relationship="Self.FK_alumno_campus" FromRole="campus" ToRole="alumno" />
-          <NavigationProperty Name="maestro" Relationship="Self.idCampus" FromRole="campus" ToRole="maestro" />
+          <NavigationProperty Name="alumno" Relationship="EscolarEquipo5Model.FK_alumno_campus" FromRole="campus" ToRole="alumno" />
+          <NavigationProperty Name="programa" Relationship="EscolarEquipo5Model.FK_programa_campus" FromRole="campus" ToRole="programa" />
+          <NavigationProperty Name="maestro" Relationship="EscolarEquipo5Model.idCampus" FromRole="campus" ToRole="maestro" />
         </EntityType>
         <EntityType Name="maestro">
           <Key>
@@ -385,89 +406,66 @@
           <Property Name="direcc" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
           <Property Name="lugarNacimiento" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="fechaNacimiento" Type="DateTime" Precision="0" />
-          <Property Name="estatus" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="estatus" Type="Boolean" />
           <Property Name="idCampus" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="idMaestroMateria" Type="Int32" />
-          <NavigationProperty Name="campus" Relationship="Self.idCampus" FromRole="maestro" ToRole="campus" />
-          <NavigationProperty Name="maestroMateria" Relationship="Self.FK_maestroMateria_maestro" FromRole="maestro" ToRole="maestroMateria" />
-          <NavigationProperty Name="maestroMateria1" Relationship="Self.idMaestroMateria" FromRole="maestro" ToRole="maestroMateria" />
+          <NavigationProperty Name="campus" Relationship="EscolarEquipo5Model.idCampus" FromRole="maestro" ToRole="campus" />
+          <NavigationProperty Name="maestroMateria" Relationship="EscolarEquipo5Model.FK_maestroMateria_maestro" FromRole="maestro" ToRole="maestroMateria" />
         </EntityType>
         <EntityType Name="maestroMateria">
           <Key>
             <PropertyRef Name="idMaestroMateria" />
           </Key>
-          <Property Name="idMaestroMateria" Type="Int32" Nullable="false" />
+          <Property Name="idMaestroMateria" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="numEmpleado" Type="Int32" />
-          <Property Name="idMateria" Type="Int32" />
-          <NavigationProperty Name="maestro" Relationship="Self.FK_maestroMateria_maestro" FromRole="maestroMateria" ToRole="maestro" />
-          <NavigationProperty Name="maestro1" Relationship="Self.idMaestroMateria" FromRole="maestroMateria" ToRole="maestro" />
-          <NavigationProperty Name="materia" Relationship="Self.FK_maestroMateria_materia" FromRole="maestroMateria" ToRole="materia" />
-          <NavigationProperty Name="materia1" Relationship="Self.FK_materia_maestroMateria" FromRole="maestroMateria" ToRole="materia" />
+          <Property Name="idMateria" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="maestro" Relationship="EscolarEquipo5Model.FK_maestroMateria_maestro" FromRole="maestroMateria" ToRole="maestro" />
+          <NavigationProperty Name="materia" Relationship="EscolarEquipo5Model.FK_maestroMateria_materia" FromRole="maestroMateria" ToRole="materia" />
         </EntityType>
         <EntityType Name="materia">
           <Key>
             <PropertyRef Name="idMateria" />
           </Key>
-          <Property Name="idMateria" Type="Int32" Nullable="false" />
+          <Property Name="idMateria" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
           <Property Name="nombre" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="idMaestroMateria" Type="Int32" />
-          <Property Name="idMateriaPrograma" Type="Int32" />
-          <NavigationProperty Name="maestroMateria" Relationship="Self.FK_maestroMateria_materia" FromRole="materia" ToRole="maestroMateria" />
-          <NavigationProperty Name="maestroMateria1" Relationship="Self.FK_materia_maestroMateria" FromRole="materia" ToRole="maestroMateria" />
-          <NavigationProperty Name="materiaPrograma" Relationship="Self.FK_materia_materiaPrograma" FromRole="materia" ToRole="materiaPrograma" />
-          <NavigationProperty Name="materiaPrograma1" Relationship="Self.FK_materiaPrograma_materia" FromRole="materia" ToRole="materiaPrograma" />
+          <NavigationProperty Name="alumnoMateria" Relationship="EscolarEquipo5Model.FK_alumnoMateria_materia" FromRole="materia" ToRole="alumnoMateria" />
+          <NavigationProperty Name="maestroMateria" Relationship="EscolarEquipo5Model.FK_maestroMateria_materia" FromRole="materia" ToRole="maestroMateria" />
+          <NavigationProperty Name="materiaPrograma" Relationship="EscolarEquipo5Model.FK_materiaPrograma_materia" FromRole="materia" ToRole="materiaPrograma" />
         </EntityType>
         <EntityType Name="materiaPrograma">
           <Key>
             <PropertyRef Name="idMateriaPrograma" />
           </Key>
-          <Property Name="idMateriaPrograma" Type="Int32" Nullable="false" />
-          <Property Name="idMateria" Type="Int32" />
-          <Property Name="idPrograma" Type="Int32" />
-          <NavigationProperty Name="materia" Relationship="Self.FK_materia_materiaPrograma" FromRole="materiaPrograma" ToRole="materia" />
-          <NavigationProperty Name="materia1" Relationship="Self.FK_materiaPrograma_materia" FromRole="materiaPrograma" ToRole="materia" />
-          <NavigationProperty Name="programa" Relationship="Self.FK_materiaPrograma_programa" FromRole="materiaPrograma" ToRole="programa" />
-          <NavigationProperty Name="programa1" Relationship="Self.FK_programa_materiaPrograma" FromRole="materiaPrograma" ToRole="programa" />
+          <Property Name="idMateriaPrograma" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="idMateria" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="idPrograma" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="materia" Relationship="EscolarEquipo5Model.FK_materiaPrograma_materia" FromRole="materiaPrograma" ToRole="materia" />
+          <NavigationProperty Name="programa" Relationship="EscolarEquipo5Model.FK_materiaPrograma_programa" FromRole="materiaPrograma" ToRole="programa" />
         </EntityType>
         <EntityType Name="programa">
           <Key>
             <PropertyRef Name="idPrograma" />
           </Key>
-          <Property Name="idPrograma" Type="Int32" Nullable="false" />
+          <Property Name="idPrograma" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
           <Property Name="nombrePrograma" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="nivel" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="idAlumnoPrograma" Type="Int32" />
-          <Property Name="idMateriaPrograma" Type="Int32" />
-          <NavigationProperty Name="alumnoPrograma" Relationship="Self.FK_alumnoPrograma_programa" FromRole="programa" ToRole="alumnoPrograma" />
-          <NavigationProperty Name="alumnoPrograma1" Relationship="Self.FK_programa_alumnoPrograma" FromRole="programa" ToRole="alumnoPrograma" />
-          <NavigationProperty Name="materiaPrograma" Relationship="Self.FK_materiaPrograma_programa" FromRole="programa" ToRole="materiaPrograma" />
-          <NavigationProperty Name="materiaPrograma1" Relationship="Self.FK_programa_materiaPrograma" FromRole="programa" ToRole="materiaPrograma" />
+          <Property Name="idCampus" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="alumnoPrograma" Relationship="EscolarEquipo5Model.FK_alumnoPrograma_programa" FromRole="programa" ToRole="alumnoPrograma" />
+          <NavigationProperty Name="campus" Relationship="EscolarEquipo5Model.FK_programa_campus" FromRole="programa" ToRole="campus" />
+          <NavigationProperty Name="materiaPrograma" Relationship="EscolarEquipo5Model.FK_materiaPrograma_programa" FromRole="programa" ToRole="materiaPrograma" />
         </EntityType>
         <EntityType Name="sysdiagrams">
           <Key>
             <PropertyRef Name="diagram_id" />
           </Key>
-          <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="name" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
           <Property Name="principal_id" Type="Int32" Nullable="false" />
           <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="version" Type="Int32" />
           <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
         </EntityType>
-        <Association Name="FK_alumno_alumnoPrograma">
-          <End Role="alumnoPrograma" Type="Self.alumnoPrograma" Multiplicity="0..1" />
-          <End Role="alumno" Type="Self.alumno" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="alumnoPrograma">
-              <PropertyRef Name="idAlumnoPrograma" />
-            </Principal>
-            <Dependent Role="alumno">
-              <PropertyRef Name="idAlumnoPrograma" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_alumno_campus">
-          <End Role="campus" Type="Self.campus" Multiplicity="0..1" />
-          <End Role="alumno" Type="Self.alumno" Multiplicity="*" />
+          <End Type="EscolarEquipo5Model.campus" Role="campus" Multiplicity="0..1" />
+          <End Type="EscolarEquipo5Model.alumno" Role="alumno" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="campus">
               <PropertyRef Name="idCampus" />
@@ -477,9 +475,21 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_alumnoMateria_alumno">
+          <End Type="EscolarEquipo5Model.alumno" Role="alumno" Multiplicity="0..1" />
+          <End Type="EscolarEquipo5Model.alumnoMateria" Role="alumnoMateria" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="alumno">
+              <PropertyRef Name="matricula" />
+            </Principal>
+            <Dependent Role="alumnoMateria">
+              <PropertyRef Name="matricula" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="matricula">
-          <End Role="alumno" Type="Self.alumno" Multiplicity="0..1" />
-          <End Role="alumnoPrograma" Type="Self.alumnoPrograma" Multiplicity="*" />
+          <End Type="EscolarEquipo5Model.alumno" Role="alumno" Multiplicity="0..1" />
+          <End Type="EscolarEquipo5Model.alumnoPrograma" Role="alumnoPrograma" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="alumno">
               <PropertyRef Name="matricula" />
@@ -489,9 +499,21 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_alumnoMateria_materia">
+          <End Type="EscolarEquipo5Model.materia" Role="materia" Multiplicity="0..1" />
+          <End Type="EscolarEquipo5Model.alumnoMateria" Role="alumnoMateria" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="materia">
+              <PropertyRef Name="idMateria" />
+            </Principal>
+            <Dependent Role="alumnoMateria">
+              <PropertyRef Name="idMateria" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_alumnoPrograma_programa">
-          <End Role="programa" Type="Self.programa" Multiplicity="0..1" />
-          <End Role="alumnoPrograma" Type="Self.alumnoPrograma" Multiplicity="*" />
+          <End Type="EscolarEquipo5Model.programa" Role="programa" Multiplicity="0..1" />
+          <End Type="EscolarEquipo5Model.alumnoPrograma" Role="alumnoPrograma" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="programa">
               <PropertyRef Name="idPrograma" />
@@ -501,21 +523,21 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_programa_alumnoPrograma">
-          <End Role="alumnoPrograma" Type="Self.alumnoPrograma" Multiplicity="0..1" />
-          <End Role="programa" Type="Self.programa" Multiplicity="*" />
+        <Association Name="FK_programa_campus">
+          <End Type="EscolarEquipo5Model.campus" Role="campus" Multiplicity="0..1" />
+          <End Type="EscolarEquipo5Model.programa" Role="programa" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="alumnoPrograma">
-              <PropertyRef Name="idAlumnoPrograma" />
+            <Principal Role="campus">
+              <PropertyRef Name="idCampus" />
             </Principal>
             <Dependent Role="programa">
-              <PropertyRef Name="idAlumnoPrograma" />
+              <PropertyRef Name="idCampus" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
         <Association Name="idCampus">
-          <End Role="campus" Type="Self.campus" Multiplicity="0..1" />
-          <End Role="maestro" Type="Self.maestro" Multiplicity="*" />
+          <End Type="EscolarEquipo5Model.campus" Role="campus" Multiplicity="0..1" />
+          <End Type="EscolarEquipo5Model.maestro" Role="maestro" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="campus">
               <PropertyRef Name="idCampus" />
@@ -526,8 +548,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_maestroMateria_maestro">
-          <End Role="maestro" Type="Self.maestro" Multiplicity="0..1" />
-          <End Role="maestroMateria" Type="Self.maestroMateria" Multiplicity="*" />
+          <End Type="EscolarEquipo5Model.maestro" Role="maestro" Multiplicity="0..1" />
+          <End Type="EscolarEquipo5Model.maestroMateria" Role="maestroMateria" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="maestro">
               <PropertyRef Name="numEmpleado" />
@@ -537,21 +559,9 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="idMaestroMateria">
-          <End Role="maestroMateria" Type="Self.maestroMateria" Multiplicity="0..1" />
-          <End Role="maestro" Type="Self.maestro" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="maestroMateria">
-              <PropertyRef Name="idMaestroMateria" />
-            </Principal>
-            <Dependent Role="maestro">
-              <PropertyRef Name="idMaestroMateria" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_maestroMateria_materia">
-          <End Role="materia" Type="Self.materia" Multiplicity="0..1" />
-          <End Role="maestroMateria" Type="Self.maestroMateria" Multiplicity="*" />
+          <End Type="EscolarEquipo5Model.materia" Role="materia" Multiplicity="0..1" />
+          <End Type="EscolarEquipo5Model.maestroMateria" Role="maestroMateria" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="materia">
               <PropertyRef Name="idMateria" />
@@ -561,33 +571,9 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_materia_maestroMateria">
-          <End Role="maestroMateria" Type="Self.maestroMateria" Multiplicity="0..1" />
-          <End Role="materia" Type="Self.materia" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="maestroMateria">
-              <PropertyRef Name="idMaestroMateria" />
-            </Principal>
-            <Dependent Role="materia">
-              <PropertyRef Name="idMaestroMateria" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_materia_materiaPrograma">
-          <End Role="materiaPrograma" Type="Self.materiaPrograma" Multiplicity="0..1" />
-          <End Role="materia" Type="Self.materia" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="materiaPrograma">
-              <PropertyRef Name="idMateriaPrograma" />
-            </Principal>
-            <Dependent Role="materia">
-              <PropertyRef Name="idMateriaPrograma" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_materiaPrograma_materia">
-          <End Role="materia" Type="Self.materia" Multiplicity="0..1" />
-          <End Role="materiaPrograma" Type="Self.materiaPrograma" Multiplicity="*" />
+          <End Type="EscolarEquipo5Model.materia" Role="materia" Multiplicity="0..1" />
+          <End Type="EscolarEquipo5Model.materiaPrograma" Role="materiaPrograma" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="materia">
               <PropertyRef Name="idMateria" />
@@ -598,8 +584,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_materiaPrograma_programa">
-          <End Role="programa" Type="Self.programa" Multiplicity="0..1" />
-          <End Role="materiaPrograma" Type="Self.materiaPrograma" Multiplicity="*" />
+          <End Type="EscolarEquipo5Model.programa" Role="programa" Multiplicity="0..1" />
+          <End Type="EscolarEquipo5Model.materiaPrograma" Role="materiaPrograma" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="programa">
               <PropertyRef Name="idPrograma" />
@@ -609,86 +595,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_programa_materiaPrograma">
-          <End Role="materiaPrograma" Type="Self.materiaPrograma" Multiplicity="0..1" />
-          <End Role="programa" Type="Self.programa" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="materiaPrograma">
-              <PropertyRef Name="idMateriaPrograma" />
-            </Principal>
-            <Dependent Role="programa">
-              <PropertyRef Name="idMateriaPrograma" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <EntityContainer Name="EscolarEquipo5Entities" annotation:LazyLoadingEnabled="true">
-          <EntitySet Name="alumno" EntityType="Self.alumno" />
-          <EntitySet Name="alumnoPrograma" EntityType="Self.alumnoPrograma" />
-          <EntitySet Name="campus" EntityType="Self.campus" />
-          <EntitySet Name="maestro" EntityType="Self.maestro" />
-          <EntitySet Name="maestroMateria" EntityType="Self.maestroMateria" />
-          <EntitySet Name="materia" EntityType="Self.materia" />
-          <EntitySet Name="materiaPrograma" EntityType="Self.materiaPrograma" />
-          <EntitySet Name="programa" EntityType="Self.programa" />
-          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" />
-          <AssociationSet Name="FK_alumno_alumnoPrograma" Association="Self.FK_alumno_alumnoPrograma">
-            <End Role="alumnoPrograma" EntitySet="alumnoPrograma" />
-            <End Role="alumno" EntitySet="alumno" />
-          </AssociationSet>
-          <AssociationSet Name="FK_alumno_campus" Association="Self.FK_alumno_campus">
-            <End Role="campus" EntitySet="campus" />
-            <End Role="alumno" EntitySet="alumno" />
-          </AssociationSet>
-          <AssociationSet Name="matricula" Association="Self.matricula">
-            <End Role="alumno" EntitySet="alumno" />
-            <End Role="alumnoPrograma" EntitySet="alumnoPrograma" />
-          </AssociationSet>
-          <AssociationSet Name="FK_alumnoPrograma_programa" Association="Self.FK_alumnoPrograma_programa">
-            <End Role="programa" EntitySet="programa" />
-            <End Role="alumnoPrograma" EntitySet="alumnoPrograma" />
-          </AssociationSet>
-          <AssociationSet Name="FK_programa_alumnoPrograma" Association="Self.FK_programa_alumnoPrograma">
-            <End Role="alumnoPrograma" EntitySet="alumnoPrograma" />
-            <End Role="programa" EntitySet="programa" />
-          </AssociationSet>
-          <AssociationSet Name="idCampus" Association="Self.idCampus">
-            <End Role="campus" EntitySet="campus" />
-            <End Role="maestro" EntitySet="maestro" />
-          </AssociationSet>
-          <AssociationSet Name="FK_maestroMateria_maestro" Association="Self.FK_maestroMateria_maestro">
-            <End Role="maestro" EntitySet="maestro" />
-            <End Role="maestroMateria" EntitySet="maestroMateria" />
-          </AssociationSet>
-          <AssociationSet Name="idMaestroMateria" Association="Self.idMaestroMateria">
-            <End Role="maestroMateria" EntitySet="maestroMateria" />
-            <End Role="maestro" EntitySet="maestro" />
-          </AssociationSet>
-          <AssociationSet Name="FK_maestroMateria_materia" Association="Self.FK_maestroMateria_materia">
-            <End Role="materia" EntitySet="materia" />
-            <End Role="maestroMateria" EntitySet="maestroMateria" />
-          </AssociationSet>
-          <AssociationSet Name="FK_materia_maestroMateria" Association="Self.FK_materia_maestroMateria">
-            <End Role="maestroMateria" EntitySet="maestroMateria" />
-            <End Role="materia" EntitySet="materia" />
-          </AssociationSet>
-          <AssociationSet Name="FK_materia_materiaPrograma" Association="Self.FK_materia_materiaPrograma">
-            <End Role="materiaPrograma" EntitySet="materiaPrograma" />
-            <End Role="materia" EntitySet="materia" />
-          </AssociationSet>
-          <AssociationSet Name="FK_materiaPrograma_materia" Association="Self.FK_materiaPrograma_materia">
-            <End Role="materia" EntitySet="materia" />
-            <End Role="materiaPrograma" EntitySet="materiaPrograma" />
-          </AssociationSet>
-          <AssociationSet Name="FK_materiaPrograma_programa" Association="Self.FK_materiaPrograma_programa">
-            <End Role="programa" EntitySet="programa" />
-            <End Role="materiaPrograma" EntitySet="materiaPrograma" />
-          </AssociationSet>
-          <AssociationSet Name="FK_programa_materiaPrograma" Association="Self.FK_programa_materiaPrograma">
-            <End Role="materiaPrograma" EntitySet="materiaPrograma" />
-            <End Role="programa" EntitySet="programa" />
-          </AssociationSet>
-        </EntityContainer>
-      </Schema>
+        </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
@@ -697,99 +604,104 @@
           <EntitySetMapping Name="alumno">
             <EntityTypeMapping TypeName="EscolarEquipo5Model.alumno">
               <MappingFragment StoreEntitySet="alumno">
-                <ScalarProperty Name="matricula" ColumnName="matricula" />
-                <ScalarProperty Name="nombre" ColumnName="nombre" />
-                <ScalarProperty Name="direcc" ColumnName="direcc" />
-                <ScalarProperty Name="lugarNacimiento" ColumnName="lugarNacimiento" />
-                <ScalarProperty Name="fechaNacimiento" ColumnName="fechaNacimiento" />
-                <ScalarProperty Name="estatus" ColumnName="estatus" />
-                <ScalarProperty Name="idAlumnoPrograma" ColumnName="idAlumnoPrograma" />
                 <ScalarProperty Name="idCampus" ColumnName="idCampus" />
+                <ScalarProperty Name="estatus" ColumnName="estatus" />
+                <ScalarProperty Name="fechaNacimiento" ColumnName="fechaNacimiento" />
+                <ScalarProperty Name="lugarNacimiento" ColumnName="lugarNacimiento" />
+                <ScalarProperty Name="direcc" ColumnName="direcc" />
+                <ScalarProperty Name="nombre" ColumnName="nombre" />
+                <ScalarProperty Name="matricula" ColumnName="matricula" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="alumnoMateria">
+            <EntityTypeMapping TypeName="EscolarEquipo5Model.alumnoMateria">
+              <MappingFragment StoreEntitySet="alumnoMateria">
+                <ScalarProperty Name="aprobada" ColumnName="aprobada" />
+                <ScalarProperty Name="idMateria" ColumnName="idMateria" />
+                <ScalarProperty Name="matricula" ColumnName="matricula" />
+                <ScalarProperty Name="idAlumnoMateria" ColumnName="idAlumnoMateria" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="alumnoPrograma">
             <EntityTypeMapping TypeName="EscolarEquipo5Model.alumnoPrograma">
               <MappingFragment StoreEntitySet="alumnoPrograma">
-                <ScalarProperty Name="idAlumnoPrograma" ColumnName="idAlumnoPrograma" />
-                <ScalarProperty Name="matricula" ColumnName="matricula" />
-                <ScalarProperty Name="idPrograma" ColumnName="idPrograma" />
-                <ScalarProperty Name="semestre" ColumnName="semestre" />
                 <ScalarProperty Name="avance" ColumnName="avance" />
+                <ScalarProperty Name="semestre" ColumnName="semestre" />
+                <ScalarProperty Name="idPrograma" ColumnName="idPrograma" />
+                <ScalarProperty Name="matricula" ColumnName="matricula" />
+                <ScalarProperty Name="idAlumnoPrograma" ColumnName="idAlumnoPrograma" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="campus">
             <EntityTypeMapping TypeName="EscolarEquipo5Model.campus">
               <MappingFragment StoreEntitySet="campus">
-                <ScalarProperty Name="idCampus" ColumnName="idCampus" />
-                <ScalarProperty Name="tipo" ColumnName="tipo" />
-                <ScalarProperty Name="nombre" ColumnName="nombre" />
                 <ScalarProperty Name="direcc" ColumnName="direcc" />
+                <ScalarProperty Name="nombre" ColumnName="nombre" />
+                <ScalarProperty Name="tipo" ColumnName="tipo" />
+                <ScalarProperty Name="idCampus" ColumnName="idCampus" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="maestro">
             <EntityTypeMapping TypeName="EscolarEquipo5Model.maestro">
               <MappingFragment StoreEntitySet="maestro">
-                <ScalarProperty Name="numEmpleado" ColumnName="numEmpleado" />
-                <ScalarProperty Name="nombre" ColumnName="nombre" />
-                <ScalarProperty Name="direcc" ColumnName="direcc" />
-                <ScalarProperty Name="lugarNacimiento" ColumnName="lugarNacimiento" />
-                <ScalarProperty Name="fechaNacimiento" ColumnName="fechaNacimiento" />
-                <ScalarProperty Name="estatus" ColumnName="estatus" />
                 <ScalarProperty Name="idCampus" ColumnName="idCampus" />
-                <ScalarProperty Name="idMaestroMateria" ColumnName="idMaestroMateria" />
+                <ScalarProperty Name="estatus" ColumnName="estatus" />
+                <ScalarProperty Name="fechaNacimiento" ColumnName="fechaNacimiento" />
+                <ScalarProperty Name="lugarNacimiento" ColumnName="lugarNacimiento" />
+                <ScalarProperty Name="direcc" ColumnName="direcc" />
+                <ScalarProperty Name="nombre" ColumnName="nombre" />
+                <ScalarProperty Name="numEmpleado" ColumnName="numEmpleado" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="maestroMateria">
             <EntityTypeMapping TypeName="EscolarEquipo5Model.maestroMateria">
               <MappingFragment StoreEntitySet="maestroMateria">
-                <ScalarProperty Name="idMaestroMateria" ColumnName="idMaestroMateria" />
-                <ScalarProperty Name="numEmpleado" ColumnName="numEmpleado" />
                 <ScalarProperty Name="idMateria" ColumnName="idMateria" />
+                <ScalarProperty Name="numEmpleado" ColumnName="numEmpleado" />
+                <ScalarProperty Name="idMaestroMateria" ColumnName="idMaestroMateria" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="materia">
             <EntityTypeMapping TypeName="EscolarEquipo5Model.materia">
               <MappingFragment StoreEntitySet="materia">
-                <ScalarProperty Name="idMateria" ColumnName="idMateria" />
                 <ScalarProperty Name="nombre" ColumnName="nombre" />
-                <ScalarProperty Name="idMaestroMateria" ColumnName="idMaestroMateria" />
-                <ScalarProperty Name="idMateriaPrograma" ColumnName="idMateriaPrograma" />
+                <ScalarProperty Name="idMateria" ColumnName="idMateria" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="materiaPrograma">
             <EntityTypeMapping TypeName="EscolarEquipo5Model.materiaPrograma">
               <MappingFragment StoreEntitySet="materiaPrograma">
-                <ScalarProperty Name="idMateriaPrograma" ColumnName="idMateriaPrograma" />
-                <ScalarProperty Name="idMateria" ColumnName="idMateria" />
                 <ScalarProperty Name="idPrograma" ColumnName="idPrograma" />
+                <ScalarProperty Name="idMateria" ColumnName="idMateria" />
+                <ScalarProperty Name="idMateriaPrograma" ColumnName="idMateriaPrograma" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="programa">
             <EntityTypeMapping TypeName="EscolarEquipo5Model.programa">
               <MappingFragment StoreEntitySet="programa">
-                <ScalarProperty Name="idPrograma" ColumnName="idPrograma" />
-                <ScalarProperty Name="nombrePrograma" ColumnName="nombrePrograma" />
+                <ScalarProperty Name="idCampus" ColumnName="idCampus" />
                 <ScalarProperty Name="nivel" ColumnName="nivel" />
-                <ScalarProperty Name="idAlumnoPrograma" ColumnName="idAlumnoPrograma" />
-                <ScalarProperty Name="idMateriaPrograma" ColumnName="idMateriaPrograma" />
+                <ScalarProperty Name="nombrePrograma" ColumnName="nombrePrograma" />
+                <ScalarProperty Name="idPrograma" ColumnName="idPrograma" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="sysdiagrams">
             <EntityTypeMapping TypeName="EscolarEquipo5Model.sysdiagrams">
               <MappingFragment StoreEntitySet="sysdiagrams">
-                <ScalarProperty Name="name" ColumnName="name" />
-                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
-                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
-                <ScalarProperty Name="version" ColumnName="version" />
                 <ScalarProperty Name="definition" ColumnName="definition" />
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+                <ScalarProperty Name="name" ColumnName="name" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

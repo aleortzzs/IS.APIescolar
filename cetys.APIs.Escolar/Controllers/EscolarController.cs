@@ -43,6 +43,7 @@ namespace cetys.APIs.Escolar.Controllers
         }
 
 
+
         /// <summary>
         /// Redirects to swagger
         /// </summary>
