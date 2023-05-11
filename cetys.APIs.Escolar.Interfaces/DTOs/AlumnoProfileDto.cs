@@ -13,10 +13,10 @@ namespace cetys.APIs.Escolar.Interfaces.DTOs
         public string direcc { get; set; }
         public string lugarNacimiento { get; set; }
 
-        public DateTime fechaNacimiento { get; set; }
-        public bool estatus { get; set; }
+        public DateTime? fechaNacimiento { get; set; }
+        public bool? estatus { get; set; }
 
-        public CampusDto idCampus { get; set; }
+        public CampusDto Campus { get; set; }
     }
     public class CampusDto
     {

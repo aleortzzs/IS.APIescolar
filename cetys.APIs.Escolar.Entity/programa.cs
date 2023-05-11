@@ -21,17 +21,15 @@ namespace cetys.APIs.Escolar.Entity
             this.materiaPrograma = new HashSet<materiaPrograma>();
         }
     
-        public int idPrograma { get; set; }
+        public string idPrograma { get; set; }
         public string nombrePrograma { get; set; }
         public string nivel { get; set; }
-        public Nullable<int> idAlumnoPrograma { get; set; }
-        public Nullable<int> idMateriaPrograma { get; set; }
+        public string idCampus { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<alumnoPrograma> alumnoPrograma { get; set; }
-        public virtual alumnoPrograma alumnoPrograma1 { get; set; }
+        public virtual campus campus { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<materiaPrograma> materiaPrograma { get; set; }
-        public virtual materiaPrograma materiaPrograma1 { get; set; }
     }
 }

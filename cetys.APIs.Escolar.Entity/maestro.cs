@@ -25,13 +25,11 @@ namespace cetys.APIs.Escolar.Entity
         public string direcc { get; set; }
         public string lugarNacimiento { get; set; }
         public Nullable<System.DateTime> fechaNacimiento { get; set; }
-        public string estatus { get; set; }
+        public Nullable<bool> estatus { get; set; }
         public string idCampus { get; set; }
-        public Nullable<int> idMaestroMateria { get; set; }
     
         public virtual campus campus { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<maestroMateria> maestroMateria { get; set; }
-        public virtual maestroMateria maestroMateria1 { get; set; }
     }
 }

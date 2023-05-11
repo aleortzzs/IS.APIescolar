@@ -43,16 +43,16 @@ namespace cetys.APIs.Escolar.Interfaces.Escolar
 
 
         //GET BY MATRICULA
-        public static List<DTOs.AlumnoProfileDto> GetAlumnoProfile(string matricula)
+        public static DTOs.AlumnoProfileDto GetAlumnoProfile(string matricula)
         {
             using (var cx = new EscolarEquipo5Entities())
             {
                 var alumno = cx.alumno
                     .Include("Campus")
                     .Where(a => a.matricula == matricula)
-                .ToList();
+                .FirstOrDefault();
 
-                return Helper.ConvertToAlumno(alumno);
+                return Helper.ConvertTo1Alumno(alumno);
             }
         }
 
@@ -76,7 +76,6 @@ namespace cetys.APIs.Escolar.Interfaces.Escolar
             {
                 using (var cx = new EscolarEquipo5Entities())
                 {
-
                     var a = new Entity.alumno
                     {
                         matricula = alumno.matricula,
@@ -85,7 +84,7 @@ namespace cetys.APIs.Escolar.Interfaces.Escolar
                         lugarNacimiento = alumno.lugarNacimiento,
                         fechaNacimiento = alumno.fechaNacimiento,
                         estatus = true,
-                        idCampus = alumno.idCampus.idCampus
+                        idCampus = alumno.Campus.idCampus
                     };
                     cx.alumno.Add(a);
                     cx.SaveChanges();

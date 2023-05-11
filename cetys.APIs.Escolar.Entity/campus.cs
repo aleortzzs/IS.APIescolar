@@ -18,6 +18,7 @@ namespace cetys.APIs.Escolar.Entity
         public campus()
         {
             this.alumno = new HashSet<alumno>();
+            this.programa = new HashSet<programa>();
             this.maestro = new HashSet<maestro>();
         }
     
@@ -28,6 +29,8 @@ namespace cetys.APIs.Escolar.Entity
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<alumno> alumno { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<programa> programa { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<maestro> maestro { get; set; }
     }

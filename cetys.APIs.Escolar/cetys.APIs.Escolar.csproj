@@ -183,7 +183,7 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\cetys.APIs.Escolar.Entity\cetys.APIs.Escolar.Entity.csproj">
-      <Project>{ce2aec98-ddf6-4818-8b52-22b148f94539}</Project>
+      <Project>{6d2faa50-e326-459e-8a7e-90bf4d886bad}</Project>
       <Name>cetys.APIs.Escolar.Entity</Name>
     </ProjectReference>
     <ProjectReference Include="..\cetys.APIs.Escolar.Interfaces\cetys.APIs.Escolar.Interfaces.csproj">
