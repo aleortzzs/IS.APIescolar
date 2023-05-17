@@ -14,22 +14,11 @@ namespace cetys.APIs.Escolar.Entity
     
     public partial class maestroMateria
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public maestroMateria()
-        {
-            this.maestro1 = new HashSet<maestro>();
-            this.materia1 = new HashSet<materia>();
-        }
-    
         public int idMaestroMateria { get; set; }
         public Nullable<int> numEmpleado { get; set; }
-        public Nullable<int> idMateria { get; set; }
+        public string idMateria { get; set; }
     
         public virtual maestro maestro { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<maestro> maestro1 { get; set; }
         public virtual materia materia { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<materia> materia1 { get; set; }
     }
 }

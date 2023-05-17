@@ -12,13 +12,14 @@ namespace cetys.APIs.Escolar.Entity
     using System;
     using System.Collections.Generic;
     
-    public partial class materiaPrograma
+    public partial class alumnoMateria
     {
-        public int idMateriaPrograma { get; set; }
+        public int idAlumnoMateria { get; set; }
+        public string matricula { get; set; }
         public string idMateria { get; set; }
-        public string idPrograma { get; set; }
+        public Nullable<bool> aprobada { get; set; }
     
+        public virtual alumno alumno { get; set; }
         public virtual materia materia { get; set; }
-        public virtual programa programa { get; set; }
     }
 }

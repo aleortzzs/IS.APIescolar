@@ -54,8 +54,45 @@
             <remarks>
             Method to get the basic user profile
             </remarks>
-            <param name="matricula">matricula as a parameter [matricula numeric(6)], ex:010300</param>
+            <param name="matricula">matricula as a parameter [matricula varchar(7)], ex:m035190</param>
             <returns>Regresa User Prodile Dto</returns>
+        </member>
+        <member name="M:cetys.APIs.Escolar.Controllers.EscolarController.GetListAlumnosByName(System.String)">
+            <summary>
+            Metodo para obtener lista de alumnos, proporcionando nombre o apellido
+            </summary>
+            <remarks>
+            Method to get the basic user profile
+            </remarks>
+            <param name="nombre">nombre as a parameter [nombre varchar(50)], ex:Melghem</param>
+            <returns>Regresa Lista Alumnos</returns>
+        </member>
+        <member name="M:cetys.APIs.Escolar.Controllers.EscolarController.AgregarAlumno(cetys.APIs.Escolar.Interfaces.DTOs.AlumnoProfileDto)">
+            <summary>
+            
+            </summary>
+            <param name="datos"></param>
+            <returns></returns>
+        </member>
+        <member name="M:cetys.APIs.Escolar.Controllers.EscolarController.GetMaestroByNumEmpleado(System.Int32)">
+            <summary>
+            Metodo para obtener el perfil basico del maestro
+            </summary>
+            <remarks>
+            Method to get the basic user profile
+            </remarks>
+            <param name="numEmpleado">numEmpleado as a parameter [numEmpleado numeric(6)], ex:010300</param>
+            <returns>Regresa User Prodile Dto</returns>
+        </member>
+        <member name="M:cetys.APIs.Escolar.Controllers.EscolarController.GetListMaestrosByName(System.String)">
+            <summary>
+            Metodo para obtener lista de maestros, proporcionando nombre o apellido
+            </summary>
+            <remarks>
+            Method to get the basic user profile
+            </remarks>
+            <param name="nombre">nombre as a parameter [nombre varchar(50)], ex:Melghem</param>
+            <returns>Regresa Lista Maestros</returns>
         </member>
         <member name="M:cetys.APIs.Escolar.Controllers.EscolarController.RedirectToSwaggerUi">
             <summary>

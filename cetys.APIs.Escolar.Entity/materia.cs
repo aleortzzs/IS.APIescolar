@@ -17,20 +17,19 @@ namespace cetys.APIs.Escolar.Entity
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public materia()
         {
+            this.alumnoMateria = new HashSet<alumnoMateria>();
             this.maestroMateria = new HashSet<maestroMateria>();
-            this.materiaPrograma1 = new HashSet<materiaPrograma>();
+            this.materiaPrograma = new HashSet<materiaPrograma>();
         }
     
-        public int idMateria { get; set; }
+        public string idMateria { get; set; }
         public string nombre { get; set; }
-        public Nullable<int> idMaestroMateria { get; set; }
-        public Nullable<int> idMateriaPrograma { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<maestroMateria> maestroMateria { get; set; }
-        public virtual maestroMateria maestroMateria1 { get; set; }
-        public virtual materiaPrograma materiaPrograma { get; set; }
+        public virtual ICollection<alumnoMateria> alumnoMateria { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<materiaPrograma> materiaPrograma1 { get; set; }
+        public virtual ICollection<maestroMateria> maestroMateria { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<materiaPrograma> materiaPrograma { get; set; }
     }
 }

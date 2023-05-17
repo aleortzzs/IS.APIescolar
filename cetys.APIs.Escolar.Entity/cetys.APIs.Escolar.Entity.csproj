@@ -5,7 +5,7 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{CE2AEC98-DDF6-4818-8B52-22B148F94539}</ProjectGuid>
+    <ProjectGuid>{6D2FAA50-E326-459E-8A7E-90BF4D886BAD}</ProjectGuid>
     <OutputType>Exe</OutputType>
     <RootNamespace>cetys.APIs.Escolar.Entity</RootNamespace>
     <AssemblyName>cetys.APIs.Escolar.Entity</AssemblyName>
@@ -56,6 +56,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="alumno.cs">
+      <DependentUpon>ModelEscolar.tt</DependentUpon>
+    </Compile>
+    <Compile Include="alumnoMateria.cs">
       <DependentUpon>ModelEscolar.tt</DependentUpon>
     </Compile>
     <Compile Include="alumnoPrograma.cs">

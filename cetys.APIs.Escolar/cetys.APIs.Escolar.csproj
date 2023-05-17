@@ -182,6 +182,10 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\cetys.APIs.Escolar.Entity\cetys.APIs.Escolar.Entity.csproj">
+      <Project>{6d2faa50-e326-459e-8a7e-90bf4d886bad}</Project>
+      <Name>cetys.APIs.Escolar.Entity</Name>
+    </ProjectReference>
     <ProjectReference Include="..\cetys.APIs.Escolar.Interfaces\cetys.APIs.Escolar.Interfaces.csproj">
       <Project>{a89aa45f-f871-46ad-a80c-8a5b8d74dc03}</Project>
       <Name>cetys.APIs.Escolar.Interfaces</Name>
