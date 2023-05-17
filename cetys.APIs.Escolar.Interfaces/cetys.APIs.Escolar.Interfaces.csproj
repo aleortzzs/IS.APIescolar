@@ -91,9 +91,18 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DTOs\AlumnoProfileDto.cs" />
+    <Compile Include="DTOs\MaestroDto.cs" />
     <Compile Include="Escolar\Alumno.cs" />
+    <Compile Include="Escolar\Maestro.cs" />
     <Compile Include="Escolar\ResponseException.cs" />
+    <Compile Include="Helper.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\cetys.APIs.Escolar.Entity\cetys.APIs.Escolar.Entity.csproj">
+      <Project>{6d2faa50-e326-459e-8a7e-90bf4d886bad}</Project>
+      <Name>cetys.APIs.Escolar.Entity</Name>
+    </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
