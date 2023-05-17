@@ -100,6 +100,17 @@ namespace cetys.APIs.Escolar.Controllers
         }
 
 
+        /// <summary>
+        /// Obtiene todas las materias 
+        /// </summary>
+        /// <returns></returns>
+        [Route("GetMaterias/v1/Todos"), HttpGet]
+        public List<Interfaces.DTOs.MateriaDto> GetMaterias()
+        {
+            return Interfaces.Escolar.Materia.GetALLmaterias();
+        }
+
+
 
 
 
