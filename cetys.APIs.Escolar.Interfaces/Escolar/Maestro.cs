@@ -35,6 +35,75 @@ namespace cetys.APIs.Escolar.Interfaces.Escolar
                 return Helper.ConvertToMaestro(maestro);
             }
         }
+
+        //ADD MAESTRO
+        public static bool AddMaestro(MaestroDto maestro)
+        {
+            try
+            {
+                using (var cx = new EscolarEquipo5Entities())
+                {
+                    var a = new Entity.maestro
+                    {
+                        numEmpleado = maestro.numEmpleado,
+                        nombre = maestro.nombre,
+                        direcc = maestro.direcc,
+                        lugarNacimiento = maestro.lugarNacimiento,
+                        fechaNacimiento = maestro.fechaNacimiento,
+                        estatus = true,
+                        idCampus = maestro.idCampus.idCampus
+                    };
+                    cx.maestro.Add(a);
+                    cx.SaveChanges();
+                }
+            }
+            catch (Exception e)
+            {
+                Helper.log(e);
+                throw;
+            }
+            return true;
+        }
+        //UPDATE MAESTRO
+
+        public static bool UpdateMaestro(MaestroDto maestro)
+        {
+            using (var cx = new EscolarEquipo5Entities())
+            {
+                var item = cx.maestro
+                    .Where(a => a.numEmpleado == maestro.numEmpleado)
+                    .SingleOrDefault();
+                if (item != null)
+                {
+                    item.nombre = maestro.nombre;
+                    item.direcc = maestro.direcc;
+                    item.lugarNacimiento = maestro.lugarNacimiento;
+                    item.fechaNacimiento = maestro.fechaNacimiento;
+                    item.estatus= maestro.estatus;
+                    item.idCampus = maestro.idCampus.idCampus;
+                }
+                cx.SaveChanges();
+            }
+
+            return true;
+        }
+        //DELETE MAESTRO
+        public static bool DeleteMaestro(int numEmpleado)
+        {
+            using (var cx = new EscolarEquipo5Entities())
+            {
+                var item = cx.maestro
+                    .Where(a => a.numEmpleado == numEmpleado)
+                    .SingleOrDefault();
+                if (item != null)
+                {
+                    item.estatus = false;
+                }
+                cx.SaveChanges();
+            }
+
+            return true;
+        }
     }
 
     public class Materia
