@@ -112,7 +112,7 @@ namespace cetys.APIs.Escolar.Controllers
 
 
         /// <summary>
-        /// 
+        /// Agregar nueva Materia
         /// </summary>
         /// <param name="datos"></param>
         /// <returns></returns>
@@ -123,7 +123,7 @@ namespace cetys.APIs.Escolar.Controllers
         }
 
         /// <summary>
-        /// 
+        /// Agregar nuevo Maestro
         /// </summary>
         /// <param name="datos"></param>
         /// <returns></returns>
@@ -134,34 +134,34 @@ namespace cetys.APIs.Escolar.Controllers
         }
 
         /// <summary>
-        /// 
+        /// Agregar nuevoPrograma
         /// </summary>
         /// <param name="datos"></param>
         /// <returns></returns>
-        [Route("AgregarAlumno/v1"), HttpPost]
+        [Route("AgregarPrograma/v1"), HttpPost]
         public bool AgregarPrograma(ProgramaDto datos)
         {
             return Programa.AgregarPrograma(datos);
         }
 
         /// <summary>
-        /// Modificar alumno
+        /// Modificar maestro
         /// </summary>
         /// <param name="maestro"></param>
         /// <returns></returns>
         [Route("ModificarMaestro/v1/"), HttpPost]
-        public bool ModificarMaestro(Interfaces.DTOs.MaestroDTO maestro)
+        public bool ModificarMaestro(Interfaces.DTOs.MaestroDto maestro)
         {
             return Interfaces.Escolar.Maestro.UpdateMaestro(maestro);
         }
 
         /// <summary>
-        /// Baja a alumno por matricula
+        /// Baja a maestro por número de empleado
         /// </summary>
         /// <param name="numEmpleado"></param>
         /// <returns></returns>
         [Route("BajaMaestro/v1/{numEmpleado}"), HttpPost]
-        public bool BajaMaestro(string numEmpleado)
+        public bool BajaMaestro(int numEmpleado)
         {
             return Interfaces.Escolar.Maestro.DeleteMaestro(numEmpleado);
         }

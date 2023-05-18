@@ -51,7 +51,7 @@ namespace cetys.APIs.Escolar.Interfaces.Escolar
                         lugarNacimiento = maestro.lugarNacimiento,
                         fechaNacimiento = maestro.fechaNacimiento,
                         estatus = true,
-                        idCampus = maestro.Campus.idCampus
+                        idCampus = maestro.idCampus.idCampus
                     };
                     cx.maestro.Add(a);
                     cx.SaveChanges();
@@ -66,11 +66,11 @@ namespace cetys.APIs.Escolar.Interfaces.Escolar
         }
         //UPDATE MAESTRO
 
-        public static bool UpdateMaestro(MaestroDTO maestro)
+        public static bool UpdateMaestro(MaestroDto maestro)
         {
-            using (var cx = new EscolarRomeliaEntities())
+            using (var cx = new EscolarEquipo5Entities())
             {
-                var item = cx.Maestro
+                var item = cx.maestro
                     .Where(a => a.numEmpleado == maestro.numEmpleado)
                     .SingleOrDefault();
                 if (item != null)
@@ -80,31 +80,30 @@ namespace cetys.APIs.Escolar.Interfaces.Escolar
                     item.lugarNacimiento = maestro.lugarNacimiento;
                     item.fechaNacimiento = maestro.fechaNacimiento;
                     item.estatus= maestro.estatus;
-                    item.idCampus = maestro.idCampus;
+                    item.idCampus = maestro.idCampus.idCampus;
                 }
                 cx.SaveChanges();
             }
 
             return true;
         }
-
-        //DELETE MAESTRO 
-    }
-    public static bool DeleteMaestro(string numEmpleado)
-    {
-        using (var cx = new EscolarRomeliaEntities())
+        //DELETE MAESTRO
+        public static bool DeleteMaestro(int numEmpleado)
         {
-            var item = cx.Maestro
-                .Where(a => a.numEmplelado == numeEmpleado)
-                .SingleOrDefault();
-            if (item != null)
+            using (var cx = new EscolarEquipo5Entities())
             {
-                item.estatus = false;
+                var item = cx.maestro
+                    .Where(a => a.numEmpleado == numEmpleado)
+                    .SingleOrDefault();
+                if (item != null)
+                {
+                    item.estatus = false;
+                }
+                cx.SaveChanges();
             }
-            cx.SaveChanges();
-        }
 
-        return true;
+            return true;
+        }
     }
 
     public class Materia
