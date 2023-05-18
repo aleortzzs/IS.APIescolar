@@ -143,6 +143,16 @@ namespace cetys.APIs.Escolar.Controllers
         {
             return Programa.AgregarPrograma(datos);
         }
+        /// <summary>
+        /// Modificar alumno
+        /// </summary>
+        /// <param name="alumno"></param>
+        /// <returns></returns>
+        [Route("ModificarAlumno/v1/"), HttpPost]
+        public bool ModificarAlumno(Interfaces.DTOs.AlumnoProfileDto alumno)
+        {
+            return Interfaces.Escolar.Alumno.ModificarAlumno(alumno);
+        }
 
         /// <summary>
         /// Modificar maestro
@@ -153,6 +163,16 @@ namespace cetys.APIs.Escolar.Controllers
         public bool ModificarMaestro(Interfaces.DTOs.MaestroDto maestro)
         {
             return Interfaces.Escolar.Maestro.UpdateMaestro(maestro);
+        }
+        /// <summary>
+        /// Baja a alumno por matricula
+        /// </summary>
+        /// <param name="matricula"></param>
+        /// <returns></returns>
+        [Route("BajaAlumno/v1/{matricula}"), HttpPost]
+        public bool BajaAlumno(string matricula)
+        {
+            return Interfaces.Escolar.Alumno.BajaAlumno(matricula);
         }
 
         /// <summary>
@@ -165,8 +185,38 @@ namespace cetys.APIs.Escolar.Controllers
         {
             return Interfaces.Escolar.Maestro.DeleteMaestro(numEmpleado);
         }
+        /// <summary>
+        /// Metodo para obtener lista de materias en un programa
+        /// </summary>
+        /// <param name="idPrograma"></param>
+        /// <returns>Regresa Lista Materias</returns>
+        [Route("GetMateriasInPrograma/v1/{idPrograma}/"), HttpGet]
+        public List<MateriaDto> GetMateriasInPrograma(string idPrograma)
+        {
+            return Materia.GetMateriasInPrograma(idPrograma);
+        }
 
+        /// <summary>
+        /// Metodo para obtener lista de materias por el profesor
+        /// </summary>
+        /// <param name="numEmpleado"></param>
+        /// <returns>Regresa Lista Materias</returns>
+        [Route("GetMateriasByMaestro/v1/{numEmpleado}/"), HttpGet]
+        public List<MateriaDto> GetMateriasByMaestro(int numEmpleado)
+        {
+            return Materia.GetMateriasByMaestro(numEmpleado);
+        }
 
+        /// <summary>
+        /// Metodo para obtener lista de programas que tienen a una materia en específico
+        /// </summary>
+        /// <param name="idMateria"></param>
+        /// <returns>Regresa Lista Programas</returns>
+        [Route("GetProgramaWithMateria/v1/{idMateria}/"), HttpGet]
+        public List<ProgramaDto> GetProgramaWithMateria(string idMateria)
+        {
+            return Programa.GetProgramaWithMateria(idMateria);
+        }
 
         /// <summary>
         /// Redirects to swagger
