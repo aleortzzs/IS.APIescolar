@@ -98,8 +98,47 @@ namespace cetys.APIs.Escolar.Interfaces.Escolar
         }
 
         //BAJA ALUMNO
+        //Se tiene que poner el AlumnoProfileDto
+
+        public static bool BajaAlumno(string matricula)
+        {
+            using (var cx = new EscolarEquipo5Entities())
+            {
+                var item = cx.Alumno
+                    .Where(a => a.matricula == matricula)
+                    .SingleOrDefault();
+                if (item != null)
+                {
+                    item.estatus = false;
+                }
+                cx.SaveChanges();
+            }
+
+            return true;
+        }
 
         //CAMBIO ALUMNO
+        public static bool ModificarAlumno(AlumnoProfileDto alumno)
+        {
+            using (var cx = new EscolarEquipo5Entities())
+            {
+                var item = cx.Alumno
+                    .Where(a => a.matricula == alumno.matricula)
+                    .SingleOrDefault();
+                if (item != null)
+                {
+                    item.nombre = alumno.nombre;
+                    item.direcc = alumno.direcc;
+                    item.lugarNacimiento = alumno.lugarNacimiento;
+                    item.fechaNacimiento = alumno.fechaNacimiento;
+                    item.estatus = alumno.estatus;
+                    item.campus = alumno.campus
+                }
+                cx.SaveChanges();
+            }
+
+            return true;
+        }
 
 
 
