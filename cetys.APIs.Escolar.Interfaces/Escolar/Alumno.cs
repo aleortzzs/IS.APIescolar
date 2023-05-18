@@ -104,7 +104,7 @@ namespace cetys.APIs.Escolar.Interfaces.Escolar
         {
             using (var cx = new EscolarEquipo5Entities())
             {
-                var item = cx.Alumno
+                var item = cx.alumno
                     .Where(a => a.matricula == matricula)
                     .SingleOrDefault();
                 if (item != null)
@@ -122,7 +122,7 @@ namespace cetys.APIs.Escolar.Interfaces.Escolar
         {
             using (var cx = new EscolarEquipo5Entities())
             {
-                var item = cx.Alumno
+                var item = cx.alumno
                     .Where(a => a.matricula == alumno.matricula)
                     .SingleOrDefault();
                 if (item != null)
@@ -132,7 +132,7 @@ namespace cetys.APIs.Escolar.Interfaces.Escolar
                     item.lugarNacimiento = alumno.lugarNacimiento;
                     item.fechaNacimiento = alumno.fechaNacimiento;
                     item.estatus = alumno.estatus;
-                    item.campus = alumno.campus
+                    item.idCampus = alumno.Campus.idCampus;
                 }
                 cx.SaveChanges();
             }
