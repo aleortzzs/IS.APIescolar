@@ -94,6 +94,47 @@
             <param name="nombre">nombre as a parameter [nombre varchar(50)], ex:Melghem</param>
             <returns>Regresa Lista Maestros</returns>
         </member>
+        <member name="M:cetys.APIs.Escolar.Controllers.EscolarController.GetMaterias">
+            <summary>
+            Obtiene todas las materias 
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:cetys.APIs.Escolar.Controllers.EscolarController.AgregarMateria(cetys.APIs.Escolar.Interfaces.DTOs.MateriaDto)">
+            <summary>
+            Agregar nueva Materia
+            </summary>
+            <param name="datos"></param>
+            <returns></returns>
+        </member>
+        <member name="M:cetys.APIs.Escolar.Controllers.EscolarController.AgregarMaestro(cetys.APIs.Escolar.Interfaces.DTOs.MaestroDto)">
+            <summary>
+            Agregar nuevo Maestro
+            </summary>
+            <param name="datos"></param>
+            <returns></returns>
+        </member>
+        <member name="M:cetys.APIs.Escolar.Controllers.EscolarController.AgregarPrograma(cetys.APIs.Escolar.Interfaces.DTOs.ProgramaDto)">
+            <summary>
+            Agregar nuevoPrograma
+            </summary>
+            <param name="datos"></param>
+            <returns></returns>
+        </member>
+        <member name="M:cetys.APIs.Escolar.Controllers.EscolarController.ModificarMaestro(cetys.APIs.Escolar.Interfaces.DTOs.MaestroDto)">
+            <summary>
+            Modificar maestro
+            </summary>
+            <param name="maestro"></param>
+            <returns></returns>
+        </member>
+        <member name="M:cetys.APIs.Escolar.Controllers.EscolarController.BajaMaestro(System.Int32)">
+            <summary>
+            Baja a maestro por número de empleado
+            </summary>
+            <param name="numEmpleado"></param>
+            <returns></returns>
+        </member>
         <member name="M:cetys.APIs.Escolar.Controllers.EscolarController.RedirectToSwaggerUi">
             <summary>
             Redirects to swagger
