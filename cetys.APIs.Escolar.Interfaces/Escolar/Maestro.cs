@@ -109,7 +109,6 @@ namespace cetys.APIs.Escolar.Interfaces.Escolar
     public class Materia
     {
         //GET ALL MATERIAS
-        //!!!!!!!!!!!!!!!!!!checar este
         public static List<DTOs.MateriaDto> GetALLmaterias(string nombre = "")
         {
             using (var cx = new EscolarEquipo5Entities())
@@ -175,7 +174,6 @@ namespace cetys.APIs.Escolar.Interfaces.Escolar
     public class Programa
     {
         //GET ALL PROGRAMAS
-        //!!!!!!!!!!!!!!!!!!checar este
         public static List<DTOs.ProgramaDto> GetALLprogramas(string nombre = "")
         {
             using (var cx = new EscolarEquipo5Entities())
@@ -201,7 +199,6 @@ namespace cetys.APIs.Escolar.Interfaces.Escolar
         }
 
         //GET PROGRAMA DE ALUMNO
-        //este no se si esta bn lo tengo q checar
         public static DTOs.ProgramaDto GetProgramaAlumno(string matricula = "")
         {
             using (var cx = new EscolarEquipo5Entities())
@@ -356,7 +353,6 @@ namespace cetys.APIs.Escolar.Interfaces.Escolar
         //UPDATE ALUMNOMATERIA
         //POR EJEMPLO, SI SE QUIERE CAMBIAR QUE LA MATERIA YA SE APROBO, NO SOLO SE TIENE Q CAMBIAR ESE DATO
         //TAMBIEN SE TIENE QUE CAMBIAR EL PORCENTAJE DE AVNCE EN ALUMNO PROGRAMA
-        //DE ESTE TODAVIA NO HACER EL ENDPOINTTTT!!!!
         public static bool UpdateAlumnoMateria(AlumnoMateriaDto alumnoMateria)
         {
             using (var cx = new EscolarEquipo5Entities())
