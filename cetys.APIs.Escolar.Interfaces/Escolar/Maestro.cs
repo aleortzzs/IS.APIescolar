@@ -200,6 +200,29 @@ namespace cetys.APIs.Escolar.Interfaces.Escolar
             }
         }
 
+        //GET PROGRAMA DE ALUMNO
+        //este no se si esta bn lo tengo q checar
+        public static DTOs.ProgramaDto GetProgramaAlumno(string matricula = "")
+        {
+            using (var cx = new EscolarEquipo5Entities())
+            {
+                var programa = cx.programa
+                .Join(cx.alumnoPrograma,
+                    p => p.idPrograma,
+                    ap => ap.idPrograma,
+                    (p, ap) => new { Programa = p, alumnoPrograma = ap })
+                .Join(cx.alumno,
+                    ap => ap.alumnoPrograma.matricula,
+                    a => a.matricula,
+                    (ap, a) => new { Programa = ap.Programa, alumno = a })
+                .Where(data => data.alumno.matricula == matricula)
+                .Select(data => data.Programa)
+                .FirstOrDefault();
+
+                return Helper.ConvertTo1Programa(programa);
+            }
+        }
+
         //POST ADD PROGRAMA
         public static bool AgregarPrograma(ProgramaDto programa)
         {

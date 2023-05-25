@@ -1,6 +1,7 @@
 ﻿using cetys.APIs.Escolar.Entity;
 using cetys.APIs.Escolar.Interfaces.DTOs;
 using cetys.APIs.Escolar.Interfaces.Escolar;
+using Swashbuckle.Swagger.Annotations;
 using System;
 using System.Collections.Generic;
 using System.Net;
@@ -138,11 +139,14 @@ namespace cetys.APIs.Escolar.Controllers
         /// </summary>
         /// <param name="datos"></param>
         /// <returns></returns>
-        [Route("AgregarPrograma/v1"), HttpPost]
-        public bool AgregarPrograma(ProgramaDto datos)
+        [HttpPost]
+        [Route("AgregarPrograma/v1")]
+        public bool AgregarPrograma([FromBody] ProgramaDto datos)
         {
             return Programa.AgregarPrograma(datos);
         }
+
+
         /// <summary>
         /// Modificar alumno
         /// </summary>
@@ -217,6 +221,26 @@ namespace cetys.APIs.Escolar.Controllers
         {
             return Programa.GetProgramaWithMateria(idMateria);
         }
+
+        /// <summary>
+        /// Metodo para obtener el programa del alumno proporcionando la matrícula
+        /// </summary>
+        /// <param name="matricula"></param>
+        /// <returns>Regresa el Programa del Alumno</returns>
+        [Route("GetProgramaAlumno/v1/{matricula}/"), HttpGet]
+        public ProgramaDto GetProgramaAlumno(string matricula)
+        {
+            return Programa.GetProgramaAlumno(matricula);
+        }
+
+
+
+
+
+
+
+
+
 
         /// <summary>
         /// Redirects to swagger
