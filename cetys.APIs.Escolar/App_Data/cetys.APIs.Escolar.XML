@@ -121,11 +121,25 @@
             <param name="datos"></param>
             <returns></returns>
         </member>
+        <member name="M:cetys.APIs.Escolar.Controllers.EscolarController.ModificarAlumno(cetys.APIs.Escolar.Interfaces.DTOs.AlumnoProfileDto)">
+            <summary>
+            Modificar alumno
+            </summary>
+            <param name="alumno"></param>
+            <returns></returns>
+        </member>
         <member name="M:cetys.APIs.Escolar.Controllers.EscolarController.ModificarMaestro(cetys.APIs.Escolar.Interfaces.DTOs.MaestroDto)">
             <summary>
             Modificar maestro
             </summary>
             <param name="maestro"></param>
+            <returns></returns>
+        </member>
+        <member name="M:cetys.APIs.Escolar.Controllers.EscolarController.BajaAlumno(System.String)">
+            <summary>
+            Baja a alumno por matricula
+            </summary>
+            <param name="matricula"></param>
             <returns></returns>
         </member>
         <member name="M:cetys.APIs.Escolar.Controllers.EscolarController.BajaMaestro(System.Int32)">
@@ -134,6 +148,27 @@
             </summary>
             <param name="numEmpleado"></param>
             <returns></returns>
+        </member>
+        <member name="M:cetys.APIs.Escolar.Controllers.EscolarController.GetMateriasInPrograma(System.String)">
+            <summary>
+            Metodo para obtener lista de materias en un programa
+            </summary>
+            <param name="idPrograma"></param>
+            <returns>Regresa Lista Materias</returns>
+        </member>
+        <member name="M:cetys.APIs.Escolar.Controllers.EscolarController.GetMateriasByMaestro(System.Int32)">
+            <summary>
+            Metodo para obtener lista de materias por el profesor
+            </summary>
+            <param name="numEmpleado"></param>
+            <returns>Regresa Lista Materias</returns>
+        </member>
+        <member name="M:cetys.APIs.Escolar.Controllers.EscolarController.GetProgramaWithMateria(System.String)">
+            <summary>
+            Metodo para obtener lista de programas que tienen a una materia en específico
+            </summary>
+            <param name="idMateria"></param>
+            <returns>Regresa Lista Programas</returns>
         </member>
         <member name="M:cetys.APIs.Escolar.Controllers.EscolarController.RedirectToSwaggerUi">
             <summary>

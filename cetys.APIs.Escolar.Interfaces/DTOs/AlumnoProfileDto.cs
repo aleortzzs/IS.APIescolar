@@ -52,4 +52,21 @@ namespace cetys.APIs.Escolar.Interfaces.DTOs
         public MateriaDto idMateria { get; set; }
         public MaestroDto numEmpleado { get; set; }
     }
+
+    public class AlumnoMateriaDto
+    {
+        public int idAlumnoMateria { get; set; }
+        public MateriaDto idMateria { get; set; }
+        public AlumnoProfileDto matricula { get; set; }
+        public bool aprobada { get; set; }
+    }
+
+    public class AlumnoProgramaDto
+    {
+        public int idAlumnoPrograma { get; set; }
+        public AlumnoProfileDto matricula { get; set; }
+        public ProgramaDto idPrograma { get; set; }
+        public int semestre { get; set; }
+        public float avance { get; set; }
+    }
 }
