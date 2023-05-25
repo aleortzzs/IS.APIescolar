@@ -153,7 +153,7 @@ namespace cetys.APIs.Escolar.Controllers
         [Route("AddAlumnoPrograma/v1"), HttpPost]
         public bool AddAlumnoPrograma(AlumnoProgramaDto datos)
         {
-            return AlumnoPrograma.AddAlumnoPrograma(datos);
+            return AlumnoPrograma.addAlumnoPrograma(datos);
         }
 
         /// <summary>
@@ -164,7 +164,7 @@ namespace cetys.APIs.Escolar.Controllers
         [Route("AddAlumnoMateria/v1"), HttpPost]
         public bool AddAlumnoMateria(AlumnoMateriaDto datos)
         {
-            return AlumnoMateria.AddAlumnoMateria(datos);
+            return AlumnoMateria.addAlumnoMateria(datos);
         }
 
       
@@ -187,7 +187,7 @@ namespace cetys.APIs.Escolar.Controllers
         [Route("UpdateAlumnoPrograma/v1/"), HttpPost]
         public bool UpdateAlumnoPrograma(Interfaces.DTOs.AlumnoProgramaDto alumnoPrograma)
         {
-            return Interfaces.Escolar.Maestro.UpdateAlumnoPrograma(alumnoPrograma);
+            return Interfaces.Escolar.AlumnoPrograma.UpdateAlumnoPrograma(alumnoPrograma);
         }
 
         /// <summary>
@@ -198,7 +198,7 @@ namespace cetys.APIs.Escolar.Controllers
         [Route("UpdateAlumnoMateria/v1/"), HttpPost]
         public bool UpdateAlumnoMateria(Interfaces.DTOs.AlumnoMateriaDto alumnoMateria)
         {
-            return Interfaces.Escolar.Maestro.UpdateAlumnoMateria(alumnoMateria);
+            return Interfaces.Escolar.AlumnoMateria.UpdateAlumnoMateria(alumnoMateria);
         }
 
 

@@ -121,11 +121,39 @@
             <param name="datos"></param>
             <returns></returns>
         </member>
+        <member name="M:cetys.APIs.Escolar.Controllers.EscolarController.AddAlumnoPrograma(cetys.APIs.Escolar.Interfaces.DTOs.AlumnoProgramaDto)">
+            <summary>
+            Agregar nuevoPrograma
+            </summary>
+            <param name="datos"></param>
+            <returns></returns>
+        </member>
+        <member name="M:cetys.APIs.Escolar.Controllers.EscolarController.AddAlumnoMateria(cetys.APIs.Escolar.Interfaces.DTOs.AlumnoMateriaDto)">
+            <summary>
+            Agregar nuevoPrograma
+            </summary>
+            <param name="datos"></param>
+            <returns></returns>
+        </member>
         <member name="M:cetys.APIs.Escolar.Controllers.EscolarController.ModificarAlumno(cetys.APIs.Escolar.Interfaces.DTOs.AlumnoProfileDto)">
             <summary>
             Modificar alumno
             </summary>
             <param name="alumno"></param>
+            <returns></returns>
+        </member>
+        <member name="M:cetys.APIs.Escolar.Controllers.EscolarController.UpdateAlumnoPrograma(cetys.APIs.Escolar.Interfaces.DTOs.AlumnoProgramaDto)">
+            <summary>
+            Modificar alumno
+            </summary>
+            <param name="alumnoPrograma"></param>
+            <returns></returns>
+        </member>
+        <member name="M:cetys.APIs.Escolar.Controllers.EscolarController.UpdateAlumnoMateria(cetys.APIs.Escolar.Interfaces.DTOs.AlumnoMateriaDto)">
+            <summary>
+            Modificar alumno
+            </summary>
+            <param name="alumnoMateria"></param>
             <returns></returns>
         </member>
         <member name="M:cetys.APIs.Escolar.Controllers.EscolarController.ModificarMaestro(cetys.APIs.Escolar.Interfaces.DTOs.MaestroDto)">
@@ -169,6 +197,13 @@
             </summary>
             <param name="idMateria"></param>
             <returns>Regresa Lista Programas</returns>
+        </member>
+        <member name="M:cetys.APIs.Escolar.Controllers.EscolarController.GetProgramaAlumno(System.String)">
+            <summary>
+            Metodo para obtener el programa del alumno proporcionando la matrícula
+            </summary>
+            <param name="matricula"></param>
+            <returns>Regresa el Programa del Alumno</returns>
         </member>
         <member name="M:cetys.APIs.Escolar.Controllers.EscolarController.RedirectToSwaggerUi">
             <summary>
