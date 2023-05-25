@@ -254,6 +254,17 @@ namespace cetys.APIs.Escolar.Interfaces.Escolar
 
     public class AlumnoPrograma
     {
+        public static DTOs.AlumnoProgramaDto GetAlumnoPrograma(string matricula)
+        {
+            using (var cx = new EscolarEquipo5Entities())
+            {
+                var alumnoP = cx.alumnoPrograma
+                    .Where(a => a.matricula == matricula)
+                .FirstOrDefault();
+
+                return Helper.ConvertTo1AP(alumnoP);
+            }
+        }
         public static bool addAlumnoPrograma(AlumnoProgramaDto alumnoPrograma)
         {
             try
@@ -292,7 +303,7 @@ namespace cetys.APIs.Escolar.Interfaces.Escolar
                     item.matricula = alumnoPrograma.matricula.matricula;
                     item.idPrograma = alumnoPrograma.idPrograma.idPrograma;
                     item.semestre = alumnoPrograma.semestre;
-                    //item.avance= CalcularPorcentajeAvance(alumnoPrograma.matricula.matricula);
+                    item.avance= CalcularPorcentajeAvance(alumnoPrograma.matricula.matricula);
                 }
                 cx.SaveChanges();
             }
@@ -363,11 +374,8 @@ namespace cetys.APIs.Escolar.Interfaces.Escolar
                 cx.SaveChanges();
             }
             //LLAMAR AL METODO UPDATEALUMNOPROGRAMA PARA QUE SE ACTUALICE EL %%% AVANCE
-             
-
-
-
-
+            var cc = AlumnoPrograma.GetAlumnoPrograma(alumnoMateria.matricula.matricula);
+            AlumnoPrograma.UpdateAlumnoPrograma(cc);
             return true;
         }
     }
