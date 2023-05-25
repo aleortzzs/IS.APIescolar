@@ -52,7 +52,10 @@ namespace cetys.APIs.Escolar.Interfaces.Escolar
                     .Where(a => a.matricula == matricula)
                 .FirstOrDefault();
 
-                return Helper.ConvertTo1Alumno(alumno);
+                var alumnoprofiler = Helper.ConvertTo1Alumno(alumno);
+                alumnoprofiler.avance = AlumnoPrograma.CalcularPorcentajeAvance(alumnoprofiler.matricula);
+
+                return alumnoprofiler;
             }
         }
 
@@ -65,7 +68,13 @@ namespace cetys.APIs.Escolar.Interfaces.Escolar
                     .Where(a => a.nombre.Contains(nombre))
                     .ToList();
 
-                return Helper.ConvertToAlumno(alumno);
+                var alumnoprofiler = Helper.ConvertToAlumno(alumno);
+                foreach(var a in alumnoprofiler)
+                {
+                    a.avance = AlumnoPrograma.CalcularPorcentajeAvance(a.matricula);
+                }
+
+                return alumnoprofiler;
             }
         }
 

@@ -15,6 +15,7 @@ namespace cetys.APIs.Escolar.Interfaces.DTOs
 
         public DateTime? fechaNacimiento { get; set; }
         public bool? estatus { get; set; }
+        public double? avance { get; set; }
 
         public CampusDto Campus { get; set; }
     }

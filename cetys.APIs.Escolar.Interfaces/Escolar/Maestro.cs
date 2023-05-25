@@ -292,7 +292,7 @@ namespace cetys.APIs.Escolar.Interfaces.Escolar
                     item.matricula = alumnoPrograma.matricula.matricula;
                     item.idPrograma = alumnoPrograma.idPrograma.idPrograma;
                     item.semestre = alumnoPrograma.semestre;
-                    item.avance= CalcularPorcentajeAvance(alumnoPrograma.matricula.matricula);
+                    //item.avance= CalcularPorcentajeAvance(alumnoPrograma.matricula.matricula);
                 }
                 cx.SaveChanges();
             }
@@ -304,20 +304,13 @@ namespace cetys.APIs.Escolar.Interfaces.Escolar
         {
             using (var cx = new EscolarEquipo5Entities())
             {
-                var idPrograma = cx.alumnoPrograma
-                    .Where(ap => ap.matricula == matricula)
-                    .Select(ap => ap.idPrograma)
-                    .FirstOrDefault();
+                var materias = cx.alumnoMateria
+                    .Where(ap => ap.matricula == matricula).ToList();
 
-                var totalMateriasPrograma = cx.materiaPrograma
-                    .Count(mp => mp.idPrograma == idPrograma);
+                double totalMateriasPrograma = materias.Count();
+                double materiasAprobadas = materias.Where(m => m.aprobada == true).Count();
 
-                var materiasAprobadas = cx.alumnoMateria
-                    .Count(am => am.matricula == matricula && am.aprobada == true);
-
-                double porcentajeAvance = (double)materiasAprobadas / totalMateriasPrograma * 100;
-
-                return porcentajeAvance;
+                return totalMateriasPrograma == 0 ? 0 : (double)(materiasAprobadas / totalMateriasPrograma) * 100; ;
             }
         }
     }
