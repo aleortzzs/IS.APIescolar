@@ -225,5 +225,134 @@ namespace cetys.APIs.Escolar.Interfaces.Escolar
             }
             return true;
         }
+
+    }
+
+
+    public class AlumnoPrograma
+    {
+        public static bool addAlumnoPrograma(AlumnoProgramaDto alumnoPrograma)
+        {
+            try
+            {
+                using (var cx = new EscolarEquipo5Entities())
+                {
+                    var a = new Entity.alumnoPrograma
+                    {
+                        idAlumnoPrograma = alumnoPrograma.idAlumnoPrograma,
+                        matricula = alumnoPrograma.matricula.matricula,
+                        idPrograma = alumnoPrograma.idPrograma.idPrograma,
+                        semestre = alumnoPrograma.semestre,
+                        avance = CalcularPorcentajeAvance(alumnoPrograma.matricula.matricula)
+                    };
+                    cx.alumnoPrograma.Add(a);
+                    cx.SaveChanges();
+                }
+            }
+            catch (Exception e)
+            {
+                Helper.log(e);
+                throw;
+            }
+            return true;
+        }
+        public static bool UpdateAlumnoPrograma(AlumnoProgramaDto alumnoPrograma)
+        {
+            using (var cx = new EscolarEquipo5Entities())
+            {
+                var item = cx.alumnoPrograma
+                    .Where(a => a.idAlumnoPrograma == alumnoPrograma.idAlumnoPrograma)
+                    .SingleOrDefault();
+                if (item != null)
+                {
+                    item.idAlumnoPrograma = alumnoPrograma.idAlumnoPrograma;
+                    item.matricula = alumnoPrograma.matricula.matricula;
+                    item.idPrograma = alumnoPrograma.idPrograma.idPrograma;
+                    item.semestre = alumnoPrograma.semestre;
+                    item.avance= CalcularPorcentajeAvance(alumnoPrograma.matricula.matricula);
+                }
+                cx.SaveChanges();
+            }
+            return true;
+        }
+
+
+        public static double CalcularPorcentajeAvance(string matricula)
+        {
+            using (var cx = new EscolarEquipo5Entities())
+            {
+                var idPrograma = cx.alumnoPrograma
+                    .Where(ap => ap.matricula == matricula)
+                    .Select(ap => ap.idPrograma)
+                    .FirstOrDefault();
+
+                var totalMateriasPrograma = cx.materiaPrograma
+                    .Count(mp => mp.idPrograma == idPrograma);
+
+                var materiasAprobadas = cx.alumnoMateria
+                    .Count(am => am.matricula == matricula && am.aprobada == true);
+
+                double porcentajeAvance = (double)materiasAprobadas / totalMateriasPrograma * 100;
+
+                return porcentajeAvance;
+            }
+        }
+    }
+
+    public class AlumnoMateria
+    {
+        public static bool addAlumnoMateria(AlumnoMateriaDto alumnoMateria)
+        {
+            try
+            {
+                using (var cx = new EscolarEquipo5Entities())
+                {
+                    var a = new Entity.alumnoMateria
+                    {
+                        idAlumnoMateria = alumnoMateria.idAlumnoMateria,
+                        matricula = alumnoMateria.matricula.matricula,
+                        idMateria = alumnoMateria.idMateria.idMateria,
+                        aprobada = alumnoMateria.aprobada
+                    };
+                    cx.alumnoMateria.Add(a);
+                    cx.SaveChanges();
+                }
+            }
+            catch (Exception e)
+            {
+                Helper.log(e);
+                throw;
+            }
+            return true;
+        }
+
+        //UPDATE ALUMNOMATERIA
+        //POR EJEMPLO, SI SE QUIERE CAMBIAR QUE LA MATERIA YA SE APROBO, NO SOLO SE TIENE Q CAMBIAR ESE DATO
+        //TAMBIEN SE TIENE QUE CAMBIAR EL PORCENTAJE DE AVNCE EN ALUMNO PROGRAMA
+        //DE ESTE TODAVIA NO HACER EL ENDPOINTTTT!!!!
+        public static bool UpdateAlumnoMateria(AlumnoMateriaDto alumnoMateria)
+        {
+            using (var cx = new EscolarEquipo5Entities())
+            {
+                var item = cx.alumnoMateria
+                    .Where(a => a.idAlumnoMateria == alumnoMateria.idAlumnoMateria)
+                    .SingleOrDefault();
+                if (item != null)
+                {
+                    item.idAlumnoMateria = alumnoMateria.idAlumnoMateria;
+                    item.matricula = alumnoMateria.matricula.matricula;
+                    item.idMateria = alumnoMateria.idMateria.idMateria;
+                    item.aprobada = alumnoMateria.aprobada;
+                }
+                cx.SaveChanges();
+            }
+            //LLAMAR AL METODO UPDATEALUMNOPROGRAMA PARA QUE SE ACTUALICE EL %%% AVANCE
+             
+
+
+
+
+            return true;
+        }
     }
 }
