@@ -107,8 +107,6 @@ namespace cetys.APIs.Escolar.Interfaces.Escolar
         }
 
         //BAJA ALUMNO
-        //Se tiene que poner el AlumnoProfileDto
-
         public static bool BajaAlumno(string matricula)
         {
             using (var cx = new EscolarEquipo5Entities())
@@ -119,6 +117,23 @@ namespace cetys.APIs.Escolar.Interfaces.Escolar
                 if (item != null)
                 {
                     item.estatus = false;
+                }
+                cx.SaveChanges();
+            }
+
+            return true;
+        }
+        //ACTIVAR ALUMNO
+        public static bool ActivarAlumno(string matricula)
+        {
+            using (var cx = new EscolarEquipo5Entities())
+            {
+                var item = cx.alumno
+                    .Where(a => a.matricula == matricula)
+                    .SingleOrDefault();
+                if (item != null)
+                {
+                    item.estatus = true;
                 }
                 cx.SaveChanges();
             }

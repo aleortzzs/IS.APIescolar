@@ -69,9 +69,30 @@
         </member>
         <member name="M:cetys.APIs.Escolar.Controllers.EscolarController.AgregarAlumno(cetys.APIs.Escolar.Interfaces.DTOs.AlumnoProfileDto)">
             <summary>
-            
+            Metodo para agregar nuevo alumno
             </summary>
             <param name="datos"></param>
+            <returns></returns>
+        </member>
+        <member name="M:cetys.APIs.Escolar.Controllers.EscolarController.ModificarAlumno(cetys.APIs.Escolar.Interfaces.DTOs.AlumnoProfileDto)">
+            <summary>
+            Modificar alumno
+            </summary>
+            <param name="alumno"></param>
+            <returns></returns>
+        </member>
+        <member name="M:cetys.APIs.Escolar.Controllers.EscolarController.BajaAlumno(System.String)">
+            <summary>
+            Baja a alumno por matricula
+            </summary>
+            <param name="matricula"></param>
+            <returns></returns>
+        </member>
+        <member name="M:cetys.APIs.Escolar.Controllers.EscolarController.ActivarAlumno(System.String)">
+            <summary>
+            Activar a alumno por matricula
+            </summary>
+            <param name="matricula"></param>
             <returns></returns>
         </member>
         <member name="M:cetys.APIs.Escolar.Controllers.EscolarController.GetMaestroByNumEmpleado(System.Int32)">
@@ -94,6 +115,27 @@
             <param name="nombre">nombre as a parameter [nombre varchar(50)], ex:Melghem</param>
             <returns>Regresa Lista Maestros</returns>
         </member>
+        <member name="M:cetys.APIs.Escolar.Controllers.EscolarController.AgregarMaestro(cetys.APIs.Escolar.Interfaces.DTOs.MaestroDto)">
+            <summary>
+            Agregar nuevo Maestro
+            </summary>
+            <param name="datos"></param>
+            <returns></returns>
+        </member>
+        <member name="M:cetys.APIs.Escolar.Controllers.EscolarController.ModificarMaestro(cetys.APIs.Escolar.Interfaces.DTOs.MaestroDto)">
+            <summary>
+            Modificar maestro
+            </summary>
+            <param name="maestro"></param>
+            <returns></returns>
+        </member>
+        <member name="M:cetys.APIs.Escolar.Controllers.EscolarController.BajaMaestro(System.Int32)">
+            <summary>
+            Baja a maestro por número de empleado
+            </summary>
+            <param name="numEmpleado"></param>
+            <returns></returns>
+        </member>
         <member name="M:cetys.APIs.Escolar.Controllers.EscolarController.GetMaterias">
             <summary>
             Obtiene todas las materias 
@@ -105,76 +147,6 @@
             Agregar nueva Materia
             </summary>
             <param name="datos"></param>
-            <returns></returns>
-        </member>
-        <member name="M:cetys.APIs.Escolar.Controllers.EscolarController.AgregarMaestro(cetys.APIs.Escolar.Interfaces.DTOs.MaestroDto)">
-            <summary>
-            Agregar nuevo Maestro
-            </summary>
-            <param name="datos"></param>
-            <returns></returns>
-        </member>
-        <member name="M:cetys.APIs.Escolar.Controllers.EscolarController.AgregarPrograma(cetys.APIs.Escolar.Interfaces.DTOs.ProgramaDto)">
-            <summary>
-            Agregar nuevoPrograma
-            </summary>
-            <param name="datos"></param>
-            <returns></returns>
-        </member>
-        <member name="M:cetys.APIs.Escolar.Controllers.EscolarController.AddAlumnoPrograma(cetys.APIs.Escolar.Interfaces.DTOs.AlumnoProgramaDto)">
-            <summary>
-            Agregar nuevoPrograma
-            </summary>
-            <param name="datos"></param>
-            <returns></returns>
-        </member>
-        <member name="M:cetys.APIs.Escolar.Controllers.EscolarController.AddAlumnoMateria(cetys.APIs.Escolar.Interfaces.DTOs.AlumnoMateriaDto)">
-            <summary>
-            Agregar nuevoPrograma
-            </summary>
-            <param name="datos"></param>
-            <returns></returns>
-        </member>
-        <member name="M:cetys.APIs.Escolar.Controllers.EscolarController.ModificarAlumno(cetys.APIs.Escolar.Interfaces.DTOs.AlumnoProfileDto)">
-            <summary>
-            Modificar alumno
-            </summary>
-            <param name="alumno"></param>
-            <returns></returns>
-        </member>
-        <member name="M:cetys.APIs.Escolar.Controllers.EscolarController.UpdateAlumnoPrograma(cetys.APIs.Escolar.Interfaces.DTOs.AlumnoProgramaDto)">
-            <summary>
-            Modificar alumno
-            </summary>
-            <param name="alumnoPrograma"></param>
-            <returns></returns>
-        </member>
-        <member name="M:cetys.APIs.Escolar.Controllers.EscolarController.UpdateAlumnoMateria(cetys.APIs.Escolar.Interfaces.DTOs.AlumnoMateriaDto)">
-            <summary>
-            Modificar alumno
-            </summary>
-            <param name="alumnoMateria"></param>
-            <returns></returns>
-        </member>
-        <member name="M:cetys.APIs.Escolar.Controllers.EscolarController.ModificarMaestro(cetys.APIs.Escolar.Interfaces.DTOs.MaestroDto)">
-            <summary>
-            Modificar maestro
-            </summary>
-            <param name="maestro"></param>
-            <returns></returns>
-        </member>
-        <member name="M:cetys.APIs.Escolar.Controllers.EscolarController.BajaAlumno(System.String)">
-            <summary>
-            Baja a alumno por matricula
-            </summary>
-            <param name="matricula"></param>
-            <returns></returns>
-        </member>
-        <member name="M:cetys.APIs.Escolar.Controllers.EscolarController.BajaMaestro(System.Int32)">
-            <summary>
-            Baja a maestro por número de empleado
-            </summary>
-            <param name="numEmpleado"></param>
             <returns></returns>
         </member>
         <member name="M:cetys.APIs.Escolar.Controllers.EscolarController.GetMateriasInPrograma(System.String)">
@@ -191,12 +163,12 @@
             <param name="numEmpleado"></param>
             <returns>Regresa Lista Materias</returns>
         </member>
-        <member name="M:cetys.APIs.Escolar.Controllers.EscolarController.GetProgramaWithMateria(System.String)">
+        <member name="M:cetys.APIs.Escolar.Controllers.EscolarController.AgregarPrograma(cetys.APIs.Escolar.Interfaces.DTOs.ProgramaDto)">
             <summary>
-            Metodo para obtener lista de programas que tienen a una materia en específico
+            Agregar nuevoPrograma
             </summary>
-            <param name="idMateria"></param>
-            <returns>Regresa Lista Programas</returns>
+            <param name="datos"></param>
+            <returns></returns>
         </member>
         <member name="M:cetys.APIs.Escolar.Controllers.EscolarController.GetProgramaAlumno(System.String)">
             <summary>
@@ -204,6 +176,41 @@
             </summary>
             <param name="matricula"></param>
             <returns>Regresa el Programa del Alumno</returns>
+        </member>
+        <member name="M:cetys.APIs.Escolar.Controllers.EscolarController.GetProgramaWithMateria(System.String)">
+            <summary>
+            Metodo para obtener lista de programas que tienen a una materia en específico
+            </summary>
+            <param name="idMateria"></param>
+            <returns>Regresa Lista Programas</returns>
+        </member>
+        <member name="M:cetys.APIs.Escolar.Controllers.EscolarController.AddAlumnoPrograma(cetys.APIs.Escolar.Interfaces.DTOs.AlumnoProgramaDto)">
+            <summary>
+            Agregar nuevo alumnoPrograma
+            </summary>
+            <param name="datos"></param>
+            <returns></returns>
+        </member>
+        <member name="M:cetys.APIs.Escolar.Controllers.EscolarController.UpdateAlumnoPrograma(cetys.APIs.Escolar.Interfaces.DTOs.AlumnoProgramaDto)">
+            <summary>
+            Modificar alumnoPrograma
+            </summary>
+            <param name="alumnoPrograma"></param>
+            <returns></returns>
+        </member>
+        <member name="M:cetys.APIs.Escolar.Controllers.EscolarController.AddAlumnoMateria(cetys.APIs.Escolar.Interfaces.DTOs.AlumnoMateriaDto)">
+            <summary>
+            Agregar nuevo alumnoMateria
+            </summary>
+            <param name="datos"></param>
+            <returns></returns>
+        </member>
+        <member name="M:cetys.APIs.Escolar.Controllers.EscolarController.UpdateAlumnoMateria(cetys.APIs.Escolar.Interfaces.DTOs.AlumnoMateriaDto)">
+            <summary>
+            Modificar alumnoMateria
+            </summary>
+            <param name="alumnoMateria"></param>
+            <returns></returns>
         </member>
         <member name="M:cetys.APIs.Escolar.Controllers.EscolarController.RedirectToSwaggerUi">
             <summary>

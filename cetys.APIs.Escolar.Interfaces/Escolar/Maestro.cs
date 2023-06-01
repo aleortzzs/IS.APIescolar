@@ -347,6 +347,9 @@ namespace cetys.APIs.Escolar.Interfaces.Escolar
                 Helper.log(e);
                 throw;
             }
+            //LLAMAR AL METODO UPDATEALUMNOPROGRAMA PARA QUE SE ACTUALICE EL %%% AVANCE
+            var cc = AlumnoPrograma.GetAlumnoPrograma(alumnoMateria.matricula.matricula);
+            AlumnoPrograma.UpdateAlumnoPrograma(cc);
             return true;
         }
 
