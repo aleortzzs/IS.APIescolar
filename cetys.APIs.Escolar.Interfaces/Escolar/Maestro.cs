@@ -109,7 +109,6 @@ namespace cetys.APIs.Escolar.Interfaces.Escolar
     public class Materia
     {
         //GET ALL MATERIAS
-        //!!!!!!!!!!!!!!!!!!checar este
         public static List<DTOs.MateriaDto> GetALLmaterias(string nombre = "")
         {
             using (var cx = new EscolarEquipo5Entities())
@@ -228,7 +227,6 @@ namespace cetys.APIs.Escolar.Interfaces.Escolar
         }
 
         //GET PROGRAMA DE ALUMNO
-        //este no se si esta bn lo tengo q checar
         public static DTOs.ProgramaDto GetProgramaAlumno(string matricula = "")
         {
             using (var cx = new EscolarEquipo5Entities())
@@ -281,6 +279,17 @@ namespace cetys.APIs.Escolar.Interfaces.Escolar
 
     public class AlumnoPrograma
     {
+        public static DTOs.AlumnoProgramaDto GetAlumnoPrograma(string matricula)
+        {
+            using (var cx = new EscolarEquipo5Entities())
+            {
+                var alumnoP = cx.alumnoPrograma
+                    .Where(a => a.matricula == matricula)
+                .FirstOrDefault();
+
+                return Helper.ConvertTo1AP(alumnoP);
+            }
+        }
         public static bool addAlumnoPrograma(AlumnoProgramaDto alumnoPrograma)
         {
             try
@@ -331,20 +340,13 @@ namespace cetys.APIs.Escolar.Interfaces.Escolar
         {
             using (var cx = new EscolarEquipo5Entities())
             {
-                var idPrograma = cx.alumnoPrograma
-                    .Where(ap => ap.matricula == matricula)
-                    .Select(ap => ap.idPrograma)
-                    .FirstOrDefault();
+                var materias = cx.alumnoMateria
+                    .Where(ap => ap.matricula == matricula).ToList();
 
-                var totalMateriasPrograma = cx.materiaPrograma
-                    .Count(mp => mp.idPrograma == idPrograma);
+                double totalMateriasPrograma = materias.Count();
+                double materiasAprobadas = materias.Where(m => m.aprobada == true).Count();
 
-                var materiasAprobadas = cx.alumnoMateria
-                    .Count(am => am.matricula == matricula && am.aprobada == true);
-
-                double porcentajeAvance = (double)materiasAprobadas / totalMateriasPrograma * 100;
-
-                return porcentajeAvance;
+                return totalMateriasPrograma == 0 ? 0 : (double)(materiasAprobadas / totalMateriasPrograma) * 100; ;
             }
         }
     }
@@ -373,6 +375,9 @@ namespace cetys.APIs.Escolar.Interfaces.Escolar
                 Helper.log(e);
                 throw;
             }
+            //LLAMAR AL METODO UPDATEALUMNOPROGRAMA PARA QUE SE ACTUALICE EL %%% AVANCE
+            var cc = AlumnoPrograma.GetAlumnoPrograma(alumnoMateria.matricula.matricula);
+            AlumnoPrograma.UpdateAlumnoPrograma(cc);
             return true;
         }
 
@@ -396,13 +401,8 @@ namespace cetys.APIs.Escolar.Interfaces.Escolar
                 cx.SaveChanges();
             }
             //LLAMAR AL METODO UPDATEALUMNOPROGRAMA PARA QUE SE ACTUALICE EL %%% AVANCE
-
-
-            //AlumnoPrograma.UpdateAlumnoPrograma();
-
-
-
-
+            var cc = AlumnoPrograma.GetAlumnoPrograma(alumnoMateria.matricula.matricula);
+            AlumnoPrograma.UpdateAlumnoPrograma(cc);
             return true;
         }
     }

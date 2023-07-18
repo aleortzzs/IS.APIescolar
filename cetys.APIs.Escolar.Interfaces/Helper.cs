@@ -104,6 +104,24 @@ namespace cetys.APIs.Escolar.Interfaces
             };
         }
 
+        public static AlumnoProgramaDto ConvertTo1AP(alumnoPrograma alumnoPrograma)
+        {
+            return new DTOs.AlumnoProgramaDto()
+            {
+                idAlumnoPrograma = alumnoPrograma.idAlumnoPrograma,
+                semestre = alumnoPrograma.semestre,
+                avance = alumnoPrograma.avance,
+                matricula = new DTOs.AlumnoProfileDto()
+                {
+                    matricula = alumnoPrograma.alumno.matricula
+                },
+                idPrograma = new DTOs.ProgramaDto()
+                {
+                    idPrograma = alumnoPrograma.programa.idPrograma
+                }
+            };
+        }
+
         public static List<DTOs.ProgramaDto> ConvertToProgramas(List<Entity.programa> programas)
         {
             List<DTOs.ProgramaDto> list = new List<DTOs.ProgramaDto>();

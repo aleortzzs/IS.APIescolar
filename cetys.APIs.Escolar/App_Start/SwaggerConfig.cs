@@ -274,7 +274,7 @@ namespace cetys.APIs.Escolar
             var basePath = AppDomain.CurrentDomain.BaseDirectory + "App_Data\\";
 
             //var assemblyName = System.Reflection.Assembly.GetEntryAssembly().GetName().Name;
-            var fileName = System.IO.Path.GetFileName("cetys.APIs.escolar" + ".xml");
+            var fileName = System.IO.Path.GetFileName("cetys.APIs.Escolar" + ".xml");
 
             var path = System.IO.Path.Combine(basePath, fileName);
             return path;
