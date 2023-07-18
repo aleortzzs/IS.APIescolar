@@ -170,7 +170,35 @@ namespace cetys.APIs.Escolar.Interfaces.Escolar
             return true;
         }
     }
+    public class Campus
+    {
 
+        //POST ADD Campus
+        public static bool AgregarCampus(CampusDto campus)
+        {
+            try
+            {
+                using (var cx = new EscolarEquipo5Entities())
+                {
+                    var a = new Entity.campus
+                    {
+                        idCampus = campus.idCampus,
+                        nombre = campus.nombre,
+                        tipo = campus.tipo,
+                        direcc = campus.direcc
+                    };
+                    cx.campus.Add(a);
+                    cx.SaveChanges();
+                }
+            }
+            catch (Exception e)
+            {
+                Helper.log(e);
+                throw;
+            }
+            return true;
+        }
+    }
     public class Programa
     {
         //GET ALL PROGRAMAS

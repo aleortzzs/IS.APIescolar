@@ -217,8 +217,11 @@ namespace cetys.APIs.Escolar.Controllers
         {
             return Programa.AgregarPrograma(datos);
         }
+
+
         /// <summary>
         /// Metodo para obtener el programa del alumno proporcionando la matrícula
+
         /// </summary>
         /// <param name="matricula"></param>
         /// <returns>Regresa el Programa del Alumno</returns>
@@ -226,9 +229,11 @@ namespace cetys.APIs.Escolar.Controllers
         public ProgramaDto GetProgramaAlumno(string matricula)
         {
             return Programa.GetProgramaAlumno(matricula);
+
         }
         /// <summary>
         /// Metodo para obtener lista de programas que tienen a una materia en específico
+
         /// </summary>
         /// <param name="idMateria"></param>
         /// <returns>Regresa Lista Programas</returns>
@@ -240,6 +245,7 @@ namespace cetys.APIs.Escolar.Controllers
 
 
         //ALUMNOPROGRAMA!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
 
 
         /// <summary>
@@ -262,6 +268,7 @@ namespace cetys.APIs.Escolar.Controllers
         {
             return Interfaces.Escolar.AlumnoPrograma.UpdateAlumnoPrograma(alumnoPrograma);
         }
+
 
 
 
@@ -291,13 +298,6 @@ namespace cetys.APIs.Escolar.Controllers
 
 
         
-
-
-
-
-
-
-
 
 
 

@@ -123,6 +123,7 @@
             <returns></returns>
         </member>
         <member name="M:cetys.APIs.Escolar.Controllers.EscolarController.ModificarMaestro(cetys.APIs.Escolar.Interfaces.DTOs.MaestroDto)">
+
             <summary>
             Modificar maestro
             </summary>
@@ -130,6 +131,7 @@
             <returns></returns>
         </member>
         <member name="M:cetys.APIs.Escolar.Controllers.EscolarController.BajaMaestro(System.Int32)">
+
             <summary>
             Baja a maestro por número de empleado
             </summary>
@@ -211,6 +213,7 @@
             </summary>
             <param name="alumnoMateria"></param>
             <returns></returns>
+
         </member>
         <member name="M:cetys.APIs.Escolar.Controllers.EscolarController.RedirectToSwaggerUi">
             <summary>
