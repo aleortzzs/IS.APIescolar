@@ -15,6 +15,7 @@ namespace cetys.APIs.Escolar.Interfaces.DTOs
 
         public DateTime? fechaNacimiento { get; set; }
         public bool? estatus { get; set; }
+        public double? avance { get; set; }
 
         public CampusDto Campus { get; set; }
     }
@@ -66,7 +67,7 @@ namespace cetys.APIs.Escolar.Interfaces.DTOs
         public int idAlumnoPrograma { get; set; }
         public AlumnoProfileDto matricula { get; set; }
         public ProgramaDto idPrograma { get; set; }
-        public int semestre { get; set; }
-        public float avance { get; set; }
+        public int? semestre { get; set; }
+        public double? avance { get; set; }
     }
 }

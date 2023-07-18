@@ -1,8 +1,10 @@
 ﻿using cetys.APIs.Escolar.Entity;
 using cetys.APIs.Escolar.Interfaces.DTOs;
 using cetys.APIs.Escolar.Interfaces.Escolar;
+using Swashbuckle.Swagger.Annotations;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
@@ -57,10 +59,8 @@ namespace cetys.APIs.Escolar.Controllers
         {
             return Alumno.GetAlumnosByName(nombre);
         }
-
-
         /// <summary>
-        /// 
+        /// Metodo para agregar nuevo alumno
         /// </summary>
         /// <param name="datos"></param>
         /// <returns></returns>
@@ -69,6 +69,38 @@ namespace cetys.APIs.Escolar.Controllers
         {
             return Alumno.AgregarAlumno(datos);
         }
+        /// <summary>
+        /// Modificar alumno
+        /// </summary>
+        /// <param name="alumno"></param>
+        /// <returns></returns>
+        [Route("ModificarAlumno/v1/"), HttpPost]
+        public bool ModificarAlumno(Interfaces.DTOs.AlumnoProfileDto alumno)
+        {
+            return Interfaces.Escolar.Alumno.ModificarAlumno(alumno);
+        }
+        /// <summary>
+        /// Baja a alumno por matricula
+        /// </summary>
+        /// <param name="matricula"></param>
+        /// <returns></returns>
+        [Route("BajaAlumno/v1/{matricula}"), HttpPost]
+        public bool BajaAlumno(string matricula)
+        {
+            return Interfaces.Escolar.Alumno.BajaAlumno(matricula);
+        }
+        /// <summary>
+        /// Activar a alumno por matricula
+        /// </summary>
+        /// <param name="matricula"></param>
+        /// <returns></returns>
+        [Route("ActivarAlumno/v1/{matricula}"), HttpPost]
+        public bool ActivarAlumno(string matricula)
+        {
+            return Interfaces.Escolar.Alumno.ActivarAlumno(matricula);
+        }
+
+        //MAESTRO!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 
 
         /// <summary>
@@ -84,7 +116,6 @@ namespace cetys.APIs.Escolar.Controllers
         {
             return Maestro.GetMaestroProfile(numEmpleado);
         }
-
         /// <summary>
         /// Metodo para obtener lista de maestros, proporcionando nombre o apellido
         /// </summary>
@@ -98,30 +129,6 @@ namespace cetys.APIs.Escolar.Controllers
         {
             return Maestro.GetMaestrosByName(nombre);
         }
-
-
-        /// <summary>
-        /// Obtiene todas las materias 
-        /// </summary>
-        /// <returns></returns>
-        [Route("GetMaterias/v1/Todos"), HttpGet]
-        public List<Interfaces.DTOs.MateriaDto> GetMaterias()
-        {
-            return Interfaces.Escolar.Materia.GetALLmaterias();
-        }
-
-
-        /// <summary>
-        /// Agregar nueva Materia
-        /// </summary>
-        /// <param name="datos"></param>
-        /// <returns></returns>
-        [Route("AgregarMateria/v1"), HttpPost]
-        public bool AgregarMateria(MateriaDto datos)
-        {
-            return Materia.AgregarMateria(datos);
-        }
-
         /// <summary>
         /// Agregar nuevo Maestro
         /// </summary>
@@ -132,28 +139,6 @@ namespace cetys.APIs.Escolar.Controllers
         {
             return Maestro.AddMaestro(datos);
         }
-
-        /// <summary>
-        /// Agregar nuevoPrograma
-        /// </summary>
-        /// <param name="datos"></param>
-        /// <returns></returns>
-        [Route("AgregarPrograma/v1"), HttpPost]
-        public bool AgregarPrograma(ProgramaDto datos)
-        {
-            return Programa.AgregarPrograma(datos);
-        }
-        /// <summary>
-        /// Modificar alumno
-        /// </summary>
-        /// <param name="alumno"></param>
-        /// <returns></returns>
-        [Route("ModificarAlumno/v1/"), HttpPost]
-        public bool ModificarAlumno(Interfaces.DTOs.AlumnoProfileDto alumno)
-        {
-            return Interfaces.Escolar.Alumno.ModificarAlumno(alumno);
-        }
-
         /// <summary>
         /// Modificar maestro
         /// </summary>
@@ -165,17 +150,6 @@ namespace cetys.APIs.Escolar.Controllers
             return Interfaces.Escolar.Maestro.UpdateMaestro(maestro);
         }
         /// <summary>
-        /// Baja a alumno por matricula
-        /// </summary>
-        /// <param name="matricula"></param>
-        /// <returns></returns>
-        [Route("BajaAlumno/v1/{matricula}"), HttpPost]
-        public bool BajaAlumno(string matricula)
-        {
-            return Interfaces.Escolar.Alumno.BajaAlumno(matricula);
-        }
-
-        /// <summary>
         /// Baja a maestro por número de empleado
         /// </summary>
         /// <param name="numEmpleado"></param>
@@ -184,6 +158,29 @@ namespace cetys.APIs.Escolar.Controllers
         public bool BajaMaestro(int numEmpleado)
         {
             return Interfaces.Escolar.Maestro.DeleteMaestro(numEmpleado);
+        }
+
+        //MATERIA!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!1
+
+
+        /// <summary>
+        /// Obtiene todas las materias 
+        /// </summary>
+        /// <returns></returns>
+        [Route("GetMaterias/v1/Todos"), HttpGet]
+        public List<Interfaces.DTOs.MateriaDto> GetMaterias()
+        {
+            return Interfaces.Escolar.Materia.GetALLmaterias();
+        }
+        /// <summary>
+        /// Agregar nueva Materia
+        /// </summary>
+        /// <param name="datos"></param>
+        /// <returns></returns>
+        [Route("AgregarMateria/v1"), HttpPost]
+        public bool AgregarMateria(MateriaDto datos)
+        {
+            return Materia.AgregarMateria(datos);
         }
         /// <summary>
         /// Metodo para obtener lista de materias en un programa
@@ -195,7 +192,6 @@ namespace cetys.APIs.Escolar.Controllers
         {
             return Materia.GetMateriasInPrograma(idPrograma);
         }
-
         /// <summary>
         /// Metodo para obtener lista de materias por el profesor
         /// </summary>
@@ -207,6 +203,30 @@ namespace cetys.APIs.Escolar.Controllers
             return Materia.GetMateriasByMaestro(numEmpleado);
         }
 
+
+        //PROGRAMA!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+        /// <summary>
+        /// Agregar nuevoPrograma
+        /// </summary>
+        /// <param name="datos"></param>
+        /// <returns></returns>
+        [HttpPost]
+        [Route("AgregarPrograma/v1")]
+        public bool AgregarPrograma([FromBody] ProgramaDto datos)
+        {
+            return Programa.AgregarPrograma(datos);
+        }
+        /// <summary>
+        /// Metodo para obtener el programa del alumno proporcionando la matrícula
+        /// </summary>
+        /// <param name="matricula"></param>
+        /// <returns>Regresa el Programa del Alumno</returns>
+        [Route("GetProgramaAlumno/v1/{matricula}/"), HttpGet]
+        public ProgramaDto GetProgramaAlumno(string matricula)
+        {
+            return Programa.GetProgramaAlumno(matricula);
+        }
         /// <summary>
         /// Metodo para obtener lista de programas que tienen a una materia en específico
         /// </summary>
@@ -217,6 +237,73 @@ namespace cetys.APIs.Escolar.Controllers
         {
             return Programa.GetProgramaWithMateria(idMateria);
         }
+
+
+        //ALUMNOPROGRAMA!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+
+        /// <summary>
+        /// Agregar nuevo alumnoPrograma
+        /// </summary>
+        /// <param name="datos"></param>
+        /// <returns></returns>
+        [Route("AddAlumnoPrograma/v1"), HttpPost]
+        public bool AddAlumnoPrograma(AlumnoProgramaDto datos)
+        {
+            return AlumnoPrograma.addAlumnoPrograma(datos);
+        }
+        /// <summary>
+        /// Modificar alumnoPrograma
+        /// </summary>
+        /// <param name="alumnoPrograma"></param>
+        /// <returns></returns>
+        [Route("UpdateAlumnoPrograma/v1/"), HttpPost]
+        public bool UpdateAlumnoPrograma(Interfaces.DTOs.AlumnoProgramaDto alumnoPrograma)
+        {
+            return Interfaces.Escolar.AlumnoPrograma.UpdateAlumnoPrograma(alumnoPrograma);
+        }
+
+
+
+        //ALUMNOMATERIA!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+        /// <summary>
+        /// Agregar nuevo alumnoMateria
+        /// </summary>
+        /// <param name="datos"></param>
+        /// <returns></returns>
+        [Route("AddAlumnoMateria/v1"), HttpPost]
+        public bool AddAlumnoMateria(AlumnoMateriaDto datos)
+        {
+            return AlumnoMateria.addAlumnoMateria(datos);
+        }
+        /// <summary>
+        /// Modificar alumnoMateria
+        /// </summary>
+        /// <param name="alumnoMateria"></param>
+        /// <returns></returns>
+        [Route("UpdateAlumnoMateria/v1/"), HttpPost]
+        public bool UpdateAlumnoMateria(Interfaces.DTOs.AlumnoMateriaDto alumnoMateria)
+        {
+            return Interfaces.Escolar.AlumnoMateria.UpdateAlumnoMateria(alumnoMateria);
+        }
+
+
+
+
+        
+
+
+
+
+
+
+
+
+
+
+
+
+
 
         /// <summary>
         /// Redirects to swagger

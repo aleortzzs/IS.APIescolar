@@ -52,7 +52,10 @@ namespace cetys.APIs.Escolar.Interfaces.Escolar
                     .Where(a => a.matricula == matricula)
                 .FirstOrDefault();
 
-                return Helper.ConvertTo1Alumno(alumno);
+                var alumnoprofiler = Helper.ConvertTo1Alumno(alumno);
+                alumnoprofiler.avance = AlumnoPrograma.CalcularPorcentajeAvance(alumnoprofiler.matricula);
+
+                return alumnoprofiler;
             }
         }
 
@@ -65,7 +68,13 @@ namespace cetys.APIs.Escolar.Interfaces.Escolar
                     .Where(a => a.nombre.Contains(nombre))
                     .ToList();
 
-                return Helper.ConvertToAlumno(alumno);
+                var alumnoprofiler = Helper.ConvertToAlumno(alumno);
+                foreach(var a in alumnoprofiler)
+                {
+                    a.avance = AlumnoPrograma.CalcularPorcentajeAvance(a.matricula);
+                }
+
+                return alumnoprofiler;
             }
         }
 
@@ -98,8 +107,6 @@ namespace cetys.APIs.Escolar.Interfaces.Escolar
         }
 
         //BAJA ALUMNO
-        //Se tiene que poner el AlumnoProfileDto
-
         public static bool BajaAlumno(string matricula)
         {
             using (var cx = new EscolarEquipo5Entities())
@@ -110,6 +117,23 @@ namespace cetys.APIs.Escolar.Interfaces.Escolar
                 if (item != null)
                 {
                     item.estatus = false;
+                }
+                cx.SaveChanges();
+            }
+
+            return true;
+        }
+        //ACTIVAR ALUMNO
+        public static bool ActivarAlumno(string matricula)
+        {
+            using (var cx = new EscolarEquipo5Entities())
+            {
+                var item = cx.alumno
+                    .Where(a => a.matricula == matricula)
+                    .SingleOrDefault();
+                if (item != null)
+                {
+                    item.estatus = true;
                 }
                 cx.SaveChanges();
             }
