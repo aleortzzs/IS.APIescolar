@@ -1,6 +1,7 @@
 ﻿using cetys.APIs.Escolar.Entity;
 using cetys.APIs.Escolar.Interfaces.DTOs;
 using cetys.APIs.Escolar.Interfaces.Escolar;
+using Swashbuckle.Swagger.Annotations;
 using System;
 using System.Collections.Generic;
 using System.Net;
@@ -138,35 +139,59 @@ namespace cetys.APIs.Escolar.Controllers
         /// </summary>
         /// <param name="datos"></param>
         /// <returns></returns>
-        [Route("AgregarPrograma/v1"), HttpPost]
-        public bool AgregarPrograma(ProgramaDto datos)
+        [HttpPost]
+        [Route("AgregarPrograma/v1")]
+        public bool AgregarPrograma([FromBody] ProgramaDto datos)
         {
             return Programa.AgregarPrograma(datos);
         }
 
+
         /// <summary>
-        /// Agregar nuevoPrograma
+        /// Agregar nuevo Campus
+        /// </summary>
+        /// <param name="datos"></param>
+        /// <returns></returns>
+        [HttpPost]
+        [Route("AgregarCampus/v1")]
+        public bool AgregarCampus([FromBody] CampusDto datos)
+        {
+            return Campus.AgregarCampus(datos);
+        }
+        /// <summary>
+        /// Agregar nueva relación AlumnoPrograma
         /// </summary>
         /// <param name="datos"></param>
         /// <returns></returns>
         [Route("AddAlumnoPrograma/v1"), HttpPost]
         public bool AddAlumnoPrograma(AlumnoProgramaDto datos)
         {
-            return AlumnoPrograma.AddAlumnoPrograma(datos);
+            return AlumnoPrograma.addAlumnoPrograma(datos);
         }
 
         /// <summary>
-        /// Agregar nuevoPrograma
+        /// Agregar nueva relación AlumnoMateria
         /// </summary>
         /// <param name="datos"></param>
         /// <returns></returns>
         [Route("AddAlumnoMateria/v1"), HttpPost]
         public bool AddAlumnoMateria(AlumnoMateriaDto datos)
         {
-            return AlumnoMateria.AddAlumnoMateria(datos);
+            return AlumnoMateria.addAlumnoMateria(datos);
         }
 
-      
+        /// <summary>
+        /// Calcular porcentaje de avance
+        /// </summary>
+        /// <param name="matricula"></param>
+        /// <returns></returns>
+        [Route("CalcularPorcentajeAvance/v1/{matricula}/"), HttpGet]
+        public double CalcularPorcentajeAvance(string matricula)
+        {
+            return AlumnoPrograma.CalcularPorcentajeAvance(matricula);
+        }
+
+
 
         /// <summary>
         /// Modificar alumno
@@ -179,25 +204,25 @@ namespace cetys.APIs.Escolar.Controllers
             return Interfaces.Escolar.Alumno.ModificarAlumno(alumno);
         }
         /// <summary>
-        /// Modificar alumno
+        /// Modificar alumnoPrograma
         /// </summary>
         /// <param name="alumnoPrograma"></param>
         /// <returns></returns>
         [Route("UpdateAlumnoPrograma/v1/"), HttpPost]
         public bool UpdateAlumnoPrograma(Interfaces.DTOs.AlumnoProgramaDto alumnoPrograma)
         {
-            return Interfaces.Escolar.Maestro.UpdateAlumnoPrograma(alumnoPrograma);
+            return Interfaces.Escolar.AlumnoPrograma.UpdateAlumnoPrograma(alumnoPrograma);
         }
 
         /// <summary>
-        /// Modificar alumno
+        /// Modificar alumnoMateria
         /// </summary>
         /// <param name="alumnoMateria"></param>
         /// <returns></returns>
         [Route("UpdateAlumnoMateria/v1/"), HttpPost]
         public bool UpdateAlumnoMateria(Interfaces.DTOs.AlumnoMateriaDto alumnoMateria)
         {
-            return Interfaces.Escolar.Maestro.UpdateAlumnoMateria(alumnoMateria);
+            return Interfaces.Escolar.AlumnoMateria.UpdateAlumnoMateria(alumnoMateria);
         }
 
 
@@ -264,6 +289,19 @@ namespace cetys.APIs.Escolar.Controllers
         {
             return Programa.GetProgramaWithMateria(idMateria);
         }
+
+        /// <summary>
+        /// Metodo para obtener el programa del alumno proporcionando la matrícula
+        /// </summary>
+        /// <param name="matricula"></param>
+        /// <returns>Regresa el Programa del Alumno</returns>
+        [Route("GetProgramaAlumno/v1/{matricula}/"), HttpGet]
+        public ProgramaDto GetProgramaAlumno(string matricula)
+        {
+            return Programa.GetProgramaAlumno(matricula);
+        }
+
+
 
         /// <summary>
         /// Redirects to swagger

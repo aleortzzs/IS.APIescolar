@@ -171,11 +171,38 @@ namespace cetys.APIs.Escolar.Interfaces.Escolar
             return true;
         }
     }
+    public class Campus
+    {
 
+        //POST ADD Campus
+        public static bool AgregarCampus(CampusDto campus)
+        {
+            try
+            {
+                using (var cx = new EscolarEquipo5Entities())
+                {
+                    var a = new Entity.campus
+                    {
+                        idCampus = campus.idCampus,
+                        nombre = campus.nombre,
+                        tipo = campus.tipo,
+                        direcc = campus.direcc
+                    };
+                    cx.campus.Add(a);
+                    cx.SaveChanges();
+                }
+            }
+            catch (Exception e)
+            {
+                Helper.log(e);
+                throw;
+            }
+            return true;
+        }
+    }
     public class Programa
     {
         //GET ALL PROGRAMAS
-        //!!!!!!!!!!!!!!!!!!checar este
         public static List<DTOs.ProgramaDto> GetALLprogramas(string nombre = "")
         {
             using (var cx = new EscolarEquipo5Entities())
@@ -197,6 +224,29 @@ namespace cetys.APIs.Escolar.Interfaces.Escolar
                 .ToList();
 
                 return Helper.ConvertToProgramas(programas);
+            }
+        }
+
+        //GET PROGRAMA DE ALUMNO
+        //este no se si esta bn lo tengo q checar
+        public static DTOs.ProgramaDto GetProgramaAlumno(string matricula = "")
+        {
+            using (var cx = new EscolarEquipo5Entities())
+            {
+                var programa = cx.programa
+                .Join(cx.alumnoPrograma,
+                    p => p.idPrograma,
+                    ap => ap.idPrograma,
+                    (p, ap) => new { Programa = p, alumnoPrograma = ap })
+                .Join(cx.alumno,
+                    ap => ap.alumnoPrograma.matricula,
+                    a => a.matricula,
+                    (ap, a) => new { Programa = ap.Programa, alumno = a })
+                .Where(data => data.alumno.matricula == matricula)
+                .Select(data => data.Programa)
+                .FirstOrDefault();
+
+                return Helper.ConvertTo1Programa(programa);
             }
         }
 
@@ -329,7 +379,6 @@ namespace cetys.APIs.Escolar.Interfaces.Escolar
         //UPDATE ALUMNOMATERIA
         //POR EJEMPLO, SI SE QUIERE CAMBIAR QUE LA MATERIA YA SE APROBO, NO SOLO SE TIENE Q CAMBIAR ESE DATO
         //TAMBIEN SE TIENE QUE CAMBIAR EL PORCENTAJE DE AVNCE EN ALUMNO PROGRAMA
-        //DE ESTE TODAVIA NO HACER EL ENDPOINTTTT!!!!
         public static bool UpdateAlumnoMateria(AlumnoMateriaDto alumnoMateria)
         {
             using (var cx = new EscolarEquipo5Entities())
@@ -347,7 +396,9 @@ namespace cetys.APIs.Escolar.Interfaces.Escolar
                 cx.SaveChanges();
             }
             //LLAMAR AL METODO UPDATEALUMNOPROGRAMA PARA QUE SE ACTUALICE EL %%% AVANCE
-             
+
+
+            //AlumnoPrograma.UpdateAlumnoPrograma();
 
 
 
